@@ -1,0 +1,4 @@
+GlobalNet Technical Support.
+Support is available 24/7 by chat in the customer portal and by phone at 1-800-GLOBALNET. Average wait time is under 3 minutes.
+To reset the router, hold the reset button for 10 seconds until all lights blink, then wait 3 minutes for it to reconnect. The default network name and password are printed on the underside of the router.
+A steady red status light means the fiber signal is down and requires a technician visit, scheduled within 2 business days at no charge for active subscribers.

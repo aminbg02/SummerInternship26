@@ -1,0 +1,2 @@
+Telecom International Roaming.
+Roaming within the EU is included at no extra cost on all mobile plans (fair-use cap of 25 GB/month). Outside the EU, a Travel Pass is required: 5 euros/day for 1 GB, or 25 euros/week for 5 GB. Roaming is disabled by default outside the EU and must be enabled in the Telecom app to avoid unexpected charges.

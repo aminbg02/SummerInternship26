@@ -1,0 +1,4 @@
+Topnet Static IP and Business Options.
+A static IPv4 address costs 15 dinars per month on a residential plan and is included free on all business plans. A block of 5 static addresses costs 45 dinars per month.
+Provisioning takes 2 working days. Reverse DNS can be configured on request at no charge; the request is handled within 5 working days.
+Business plans include a service level agreement: 99.7 percent monthly uptime, with a 4-hour response to a reported fault and a credit of 5 percent of the monthly fee for each full hour beyond the agreed restoration time, capped at one month's fee.

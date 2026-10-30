@@ -1,0 +1,4 @@
+Telecom Network Coverage and Outages.
+4G covers 98 percent of the population and 5G covers 62 percent, concentrated in Tunis, Sfax, Sousse and Nabeul. Rural coverage is guaranteed at a minimum of 3 Mbps under the universal service obligation.
+Planned maintenance runs between 2am and 5am and is announced 48 hours ahead by SMS. If an unplanned outage exceeds 24 continuous hours, affected subscribers receive an automatic credit of one thirtieth of the monthly fee per full day lost. The credit appears on the next invoice and does not need to be claimed.
+Outage status is published at status.telecom.com and updated every 30 minutes.

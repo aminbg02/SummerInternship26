@@ -1,0 +1,113 @@
+.chat-shell {
+  display: flex;
+  height: 100vh;
+}
+
+.chat {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  height: 100vh;
+  background: var(--bg-tint);
+}
+
+.quota {
+  padding: 0.55rem 1.25rem 0.65rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+  font-size: 0.76rem;
+  color: var(--ink-2);
+}
+.quota-head {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto 0.3rem;
+  max-width: 820px;
+  font-variant-numeric: tabular-nums;
+}
+.quota-note {
+  max-width: 820px;
+  margin: 0.4rem auto 0;
+  font-size: 0.74rem;
+  color: var(--danger, #b3261e);
+}
+.quota-bar {
+  height: 7px;
+  border-radius: 999px;
+  background: var(--line-2);
+  overflow: hidden;
+  max-width: 820px;
+  margin: 0 auto;
+}
+.quota-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #ffb060, var(--brand));
+  transition: width 0.4s var(--ease);
+}
+.quota.warn .quota-fill {
+  background: linear-gradient(90deg, #f6c34a, #e8a400);
+}
+.quota.full .quota-fill {
+  background: linear-gradient(90deg, #e86a6a, var(--danger));
+}
+
+.banner {
+  max-width: 820px;
+  margin: 0.9rem auto 0;
+  width: calc(100% - 2.5rem);
+  padding: 0.7rem 0.9rem;
+  background: var(--brand-50);
+  border: 1px solid var(--brand-100);
+  color: var(--brand-700);
+  border-radius: var(--r-sm);
+  font-size: 0.86rem;
+  animation: rise-in 0.3s var(--ease-out) both;
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 5.5rem;
+  z-index: 40;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: min(420px, calc(100% - 2.5rem));
+  padding: 0.65rem 0.95rem;
+  border-radius: var(--r-pill);
+  background: var(--ink-panel);
+  color: var(--ink-panel-text-strong);
+  border: 1px solid var(--ink-panel-line);
+  box-shadow: var(--sh-3);
+  font-size: 0.86rem;
+  font-weight: 500;
+  cursor: pointer;
+  animation: toast-in 0.25s var(--ease-out) both;
+}
+
+.toast-icon {
+  width: 17px;
+  height: 17px;
+  flex: none;
+  color: var(--brand);
+}
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translate(-50%, 8px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+.upload-info {
+  max-width: 820px;
+  margin: 0 auto;
+  width: calc(100% - 2.5rem);
+  padding: 0.5rem 0.8rem;
+  font-size: 0.82rem;
+  color: var(--ink-2);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+}

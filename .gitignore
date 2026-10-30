@@ -1,0 +1,6 @@
+transfer_data/docker_images.tar
+
+.env
+*.env
+groqkey.txt
+transfer_data/docker_images.tar

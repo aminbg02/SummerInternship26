@@ -1,0 +1,235 @@
+.companies {
+  max-width: 960px;
+}
+
+.create {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--sh-1);
+  padding: 1.1rem 1.25rem;
+  margin-bottom: 1.25rem;
+  animation: rise-in 0.3s var(--ease-out) both;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.row input {
+  padding: 0.6rem 0.7rem;
+}
+.row input[name='name'],
+.row input[name='domain'] {
+  flex: 1 1 180px;
+}
+
+button[type='submit'] {
+  padding: 0.6rem 1.1rem;
+  border: none;
+  border-radius: var(--r-sm);
+  background: var(--brand);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(204, 91, 0, 0.35);
+  transition: background 0.15s var(--ease), transform 0.05s var(--ease);
+}
+button[type='submit']:hover:not(:disabled) {
+  background: var(--brand-600);
+}
+button[type='submit']:active {
+  transform: translateY(1px);
+}
+button[type='submit']:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.isolation {
+  margin: 0.9rem 0 0;
+  padding: 0.7rem 0.9rem 0.8rem;
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-sm);
+}
+
+.isolation legend {
+  padding: 0 0.35rem;
+  color: var(--ink-3);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.opt {
+  display: flex;
+  gap: 0.55rem;
+  align-items: flex-start;
+  padding: 0.35rem 0;
+  cursor: pointer;
+}
+.opt input {
+  margin-top: 0.2rem;
+  flex: none;
+}
+.opt strong {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+.opt em {
+  display: block;
+  font-style: normal;
+  font-size: 0.79rem;
+  color: var(--ink-3);
+  line-height: 1.45;
+}
+.opt.disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.pool-hint {
+  margin: 0.4rem 0 0;
+  font-size: 0.78rem;
+  color: var(--ink-3);
+}
+.pool-hint.exhausted {
+  color: var(--danger);
+}
+
+.kb {
+  white-space: nowrap;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.badge.dedicated {
+  background: var(--ok-bg);
+  border: 1px solid var(--ok-line);
+  color: var(--ok);
+}
+.badge.shared {
+  background: var(--surface-2);
+  border: 1px solid var(--line-2);
+  color: var(--ink-3);
+}
+
+.grid input {
+  padding: 0.4rem 0.5rem;
+}
+
+.cap-input {
+  width: 8rem;
+}
+
+.domain-input {
+  width: 12rem;
+}
+
+.save {
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+  color: var(--ink-2);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s var(--ease), border-color 0.15s var(--ease), color 0.15s var(--ease);
+}
+.save:not(:disabled) {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: #fff;
+}
+.save:hover:not(:disabled) {
+  background: var(--brand-600);
+}
+.save:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.hint {
+  margin: 0.7rem 0 0;
+  font-size: 0.82rem;
+  color: var(--ink-3);
+  line-height: 1.5;
+}
+
+.notice {
+  background: var(--ok-bg);
+  border: 1px solid var(--ok-line);
+  color: var(--ok);
+  padding: 0.55rem 0.8rem;
+  border-radius: var(--r-sm);
+  font-size: 0.86rem;
+  margin: 0 0 0.9rem;
+}
+.error {
+  background: var(--danger-bg);
+  border: 1px solid var(--danger-line);
+  color: var(--danger);
+  padding: 0.55rem 0.8rem;
+  border-radius: var(--r-sm);
+  font-size: 0.86rem;
+  margin: 0 0 0.9rem;
+}
+
+.grid {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.9rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--sh-1);
+  animation: rise-in 0.3s var(--ease-out) 0.04s both;
+}
+
+.grid th,
+.grid td {
+  text-align: left;
+  padding: 0.7rem 0.9rem;
+  border-bottom: 1px solid var(--line-2);
+}
+
+.grid th {
+  color: var(--ink-3);
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: var(--surface-2);
+}
+
+.grid tbody tr {
+  transition: background 0.12s var(--ease);
+}
+.grid tbody tr:hover {
+  background: var(--surface-2);
+}
+.grid tr:last-child td {
+  border-bottom: none;
+}
+
+.empty {
+  color: var(--ink-3);
+  text-align: center;
+  padding: 1.5rem;
+}

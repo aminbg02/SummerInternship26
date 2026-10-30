@@ -1,0 +1,4 @@
+Ooredoo Family Plans.
+A family plan groups up to 5 lines under one invoice. The first line pays full price, and each additional line receives a 30 percent discount.
+Data is shared from a single pool: Family 50 (50 GB shared, 45 dinars/month) and Family 100 (100 GB shared, 70 dinars/month). Any line may be capped individually by the account owner, which is the standard way to control a child's usage.
+Adding or removing a line takes effect at the next billing cycle. The account owner must be over 18 and is legally responsible for the whole invoice.

@@ -1,0 +1,3 @@
+Topnet Installation and Support.
+New fibre installations are scheduled within 5 business days and take about 2 hours. Support is available daily from 8am to midnight on 1298.
+If your connection drops, restart the modem by unplugging it for 30 seconds. A steady red PON light indicates a fibre fault that requires a technician visit.

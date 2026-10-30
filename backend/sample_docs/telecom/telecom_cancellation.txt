@@ -1,0 +1,4 @@
+Telecom Cancellation and Notice Periods.
+Monthly rolling plans require 30 days written notice. Fixed 12-month and 24-month contracts may be cancelled early on payment of the remaining monthly fees, capped at 6 months of the plan price.
+Cancellation without penalty is possible in three cases: a move to an address with no coverage, a documented long-term hospital stay, or a price increase applied mid-contract. In the last case the customer has 30 days from the price change notice to leave.
+Number portability to another operator takes 3 working days and is free. The outgoing operator may not delay it.

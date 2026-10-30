@@ -1,0 +1,856 @@
+{
+  "telecom": [
+    {
+      "question": "What are your support hours?",
+      "expected_keywords": ["support", "hours"]
+    },
+    {
+      "question": "How do I reset my password?",
+      "expected_keywords": ["password", "reset"]
+    },
+    {
+      "question": "What is your refund policy?",
+      "expected_keywords": ["refund"]
+    },
+    {
+      "question": "Do you offer a free trial?",
+      "expected_keywords": ["trial"]
+    },
+    {
+      "question": "How can I contact customer support?",
+      "expected_keywords": ["contact", "support"]
+    },
+    {
+      "question": "What payment methods do you accept?",
+      "expected_keywords": ["payment"]
+    },
+    {
+      "question": "Can I cancel my subscription at any time?",
+      "expected_keywords": ["cancel", "subscription"]
+    },
+    {
+      "question": "Is my data kept private and secure?",
+      "expected_keywords": ["privacy", "security"]
+    },
+    {
+      "question": "What is the capital of France?",
+      "expected_keywords": ["don't have that information", "do not have"]
+    },
+    {
+      "question": "Hi, how are you?",
+      "expected_keywords": ["hello", "hi", "help"]
+    },
+    {
+      "question": "How much is the Fiber Pro plan per month?",
+      "expected_keywords": ["79"]
+    },
+    {
+      "question": "Is roaming within the EU included in my mobile plan?",
+      "expected_keywords": ["included", "no extra cost", "free"]
+    },
+    {
+      "question": "What happens to my prepaid line if I don't top up for 6 months?",
+      "expected_keywords": ["suspend"]
+    },
+    {
+      "question": "How much notice do I need to give to cancel a monthly rolling plan?",
+      "expected_keywords": ["30 days"]
+    },
+    {
+      "question": "What should I do if my home internet connection is down?",
+      "expected_keywords": ["outage", "status", "support"]
+    },
+    {
+      "question": "How do I reset my router?",
+      "expected_keywords": ["reset", "10 seconds"]
+    },
+    {
+      "question": "What fee applies if I pay my bill late?",
+      "expected_keywords": ["5 percent", "late"]
+    },
+    {
+      "question": "How long does it take to switch my number to another operator?",
+      "expected_keywords": ["3 working days", "portability"]
+    },
+    {
+      "question": "Am I compensated if there's a long unplanned service outage?",
+      "expected_keywords": ["credit"]
+    },
+    {
+      "question": "Do I need to do anything before traveling outside the EU to avoid unexpected roaming charges?",
+      "expected_keywords": ["travel pass", "enable"]
+    },
+    {
+      "question": "How much does the Start mobile plan cost?",
+      "expected_keywords": ["10 euros", "10"]
+    },
+    {
+      "question": "Does the Fiber Pro plan come with a free router?",
+      "expected_keywords": ["free", "router"]
+    },
+    {
+      "question": "Is there an installation fee if I don't sign a 12-month contract?",
+      "expected_keywords": ["49"]
+    },
+    {
+      "question": "When are invoices issued each month?",
+      "expected_keywords": ["first"]
+    },
+    {
+      "question": "Can I get a refund if I just started a new subscription?",
+      "expected_keywords": ["14 days", "refund"]
+    },
+    {
+      "question": "When does a plan change made in the app take effect?",
+      "expected_keywords": ["next billing cycle", "first day"]
+    },
+    {
+      "question": "If I upgrade my plan in the app, when does it take effect?",
+      "expected_keywords": ["immediately"]
+    },
+    {
+      "question": "How do I get back into the Telecom app if I'm locked out?",
+      "expected_keywords": ["sms", "reset code"]
+    },
+    {
+      "question": "What percentage of the population has 5G coverage?",
+      "expected_keywords": ["62"]
+    },
+    {
+      "question": "When does planned network maintenance usually happen?",
+      "expected_keywords": ["2am", "5am"]
+    }
+  ],
+  "ooredoo": [
+    {
+      "question": "How much is the Hayya Plus prepaid plan?",
+      "expected_keywords": ["25 dinars"]
+    },
+    {
+      "question": "What's included in the Forsa postpaid plan?",
+      "expected_keywords": ["30 gb", "unlimited"]
+    },
+    {
+      "question": "How much is Ooredoo Fibre 100?",
+      "expected_keywords": ["80 dinars"]
+    },
+    {
+      "question": "What number do I call for 24/7 customer support?",
+      "expected_keywords": ["1111"]
+    },
+    {
+      "question": "How do I check my Ooredoo balance?",
+      "expected_keywords": ["*100#", "app"]
+    },
+    {
+      "question": "How do I recharge my Ooredoo line?",
+      "expected_keywords": ["scratch card", "app"]
+    },
+    {
+      "question": "What should I do if my 4G is slow?",
+      "expected_keywords": ["airplane mode"]
+    },
+    {
+      "question": "When are postpaid invoices issued?",
+      "expected_keywords": ["5th"]
+    },
+    {
+      "question": "How many days do I have to pay my postpaid invoice?",
+      "expected_keywords": ["10 days"]
+    },
+    {
+      "question": "What happens if I don't pay my postpaid bill after 15 days?",
+      "expected_keywords": ["suspend"]
+    },
+    {
+      "question": "How much does reconnection cost after a full suspension?",
+      "expected_keywords": ["5 dinars"]
+    },
+    {
+      "question": "What happens to my prepaid line if I don't recharge for 6 months?",
+      "expected_keywords": ["deactivat", "6 months"]
+    },
+    {
+      "question": "How much does a printed invoice cost at a shop?",
+      "expected_keywords": ["1 dinar"]
+    },
+    {
+      "question": "What percentage of the population has 4G coverage?",
+      "expected_keywords": ["96"]
+    },
+    {
+      "question": "Which cities have 5G coverage?",
+      "expected_keywords": ["tunis"]
+    },
+    {
+      "question": "Can I get a free signal booster for weak indoor signal?",
+      "expected_keywords": ["free", "survey"]
+    },
+    {
+      "question": "How many lines can a family plan have?",
+      "expected_keywords": ["5"]
+    },
+    {
+      "question": "How much is the Family 100 plan?",
+      "expected_keywords": ["70 dinars"]
+    },
+    {
+      "question": "What's the discount for additional lines on a family plan?",
+      "expected_keywords": ["30 percent"]
+    },
+    {
+      "question": "Who is responsible for a family plan invoice?",
+      "expected_keywords": ["account owner", "18"]
+    },
+    {
+      "question": "What are the customer care call center hours?",
+      "expected_keywords": ["8am", "10pm"]
+    },
+    {
+      "question": "How long is an in-store appointment held for?",
+      "expected_keywords": ["15 minutes"]
+    },
+    {
+      "question": "How quickly is a fixed-line fault diagnosed remotely?",
+      "expected_keywords": ["4 hours"]
+    },
+    {
+      "question": "What compensation do I get for a missed engineer appointment?",
+      "expected_keywords": ["20 dinars"]
+    },
+    {
+      "question": "Who qualifies for the Youth plan?",
+      "expected_keywords": ["16", "student"]
+    },
+    {
+      "question": "How much data does the Youth plan include?",
+      "expected_keywords": ["40 gb"]
+    },
+    {
+      "question": "What happens if I don't resubmit my student enrolment proof in time?",
+      "expected_keywords": ["standard plan", "32 dinars"]
+    },
+    {
+      "question": "Can a Youth line be part of a family plan?",
+      "expected_keywords": ["cannot", "no"]
+    },
+    {
+      "question": "What is the capital of France?",
+      "expected_keywords": ["don't have that information", "do not have"]
+    },
+    {
+      "question": "Hi, how are you?",
+      "expected_keywords": ["hello", "hi", "help"]
+    }
+  ],
+  "biat": [
+    {
+      "question": "How much is the monthly fee for a Compte Cheque account?",
+      "expected_keywords": ["5 dinars"]
+    },
+    {
+      "question": "What interest rate does a Compte Epargne pay?",
+      "expected_keywords": ["3 percent"]
+    },
+    {
+      "question": "What do I need to open a BIAT account?",
+      "expected_keywords": ["national id", "20 dinars"]
+    },
+    {
+      "question": "How much is a paper account statement by post?",
+      "expected_keywords": ["2 dinars"]
+    },
+    {
+      "question": "How much does a CIB debit card cost per year?",
+      "expected_keywords": ["40 dinars"]
+    },
+    {
+      "question": "How much does a Visa Gold card cost per year?",
+      "expected_keywords": ["180 dinars"]
+    },
+    {
+      "question": "What's the daily ATM withdrawal limit on a Visa Classic?",
+      "expected_keywords": ["1000 dinars"]
+    },
+    {
+      "question": "What should I do if my card is lost or stolen?",
+      "expected_keywords": ["block", "app"]
+    },
+    {
+      "question": "How long does it take to get a replacement card?",
+      "expected_keywords": ["5 business days"]
+    },
+    {
+      "question": "Is a transfer between BIAT accounts free?",
+      "expected_keywords": ["free", "instant"]
+    },
+    {
+      "question": "How much does a transfer to another Tunisian bank cost?",
+      "expected_keywords": ["1 dinar"]
+    },
+    {
+      "question": "How much does an international transfer cost?",
+      "expected_keywords": ["20 dinars", "0.3 percent"]
+    },
+    {
+      "question": "How long does an international transfer take?",
+      "expected_keywords": ["business days"]
+    },
+    {
+      "question": "What's the most common cause of a delayed international transfer?",
+      "expected_keywords": ["bic"]
+    },
+    {
+      "question": "Is there a fee for setting up a standing order?",
+      "expected_keywords": ["no charge", "free"]
+    },
+    {
+      "question": "How much is the quarterly current account maintenance fee?",
+      "expected_keywords": ["6 dinars"]
+    },
+    {
+      "question": "How can I avoid the current account maintenance fee?",
+      "expected_keywords": ["2000 dinars"]
+    },
+    {
+      "question": "How much does card replacement cost?",
+      "expected_keywords": ["20 dinars"]
+    },
+    {
+      "question": "How much does emergency card replacement abroad cost?",
+      "expected_keywords": ["90 dinars"]
+    },
+    {
+      "question": "How much is charged for a returned direct debit?",
+      "expected_keywords": ["15 dinars"]
+    },
+    {
+      "question": "What's the interest rate on an unarranged overdraft?",
+      "expected_keywords": ["18 percent"]
+    },
+    {
+      "question": "What documents does BIAT require to verify my identity?",
+      "expected_keywords": ["national id", "proof of address"]
+    },
+    {
+      "question": "How often do I need to re-verify my KYC documents?",
+      "expected_keywords": ["5 years"]
+    },
+    {
+      "question": "What happens if I don't update my KYC documents in time?",
+      "expected_keywords": ["blocked", "outgoing transfers"]
+    },
+    {
+      "question": "What extra proof is needed for a large non-resident deposit?",
+      "expected_keywords": ["source of funds", "20,000"]
+    },
+    {
+      "question": "What interest rate does the standard savings account pay?",
+      "expected_keywords": ["5.2 percent"]
+    },
+    {
+      "question": "What's the interest rate on a 24-month fixed-term deposit?",
+      "expected_keywords": ["7.8 percent"]
+    },
+    {
+      "question": "What happens if I break a fixed-term deposit early?",
+      "expected_keywords": ["forfeit", "interest"]
+    },
+    {
+      "question": "What is the capital of France?",
+      "expected_keywords": ["don't have that information", "do not have"]
+    },
+    {
+      "question": "Hi, how are you?",
+      "expected_keywords": ["hello", "hi", "help"]
+    }
+  ],
+  "topnet": [
+    {
+      "question": "How much is the 100 Mbps fibre plan?",
+      "expected_keywords": ["80 dinars"]
+    },
+    {
+      "question": "Does a 12-month commitment waive the installation fee?",
+      "expected_keywords": ["waive", "12-month"]
+    },
+    {
+      "question": "How long does a new fibre installation take to schedule?",
+      "expected_keywords": ["5 business days"]
+    },
+    {
+      "question": "What are Topnet's support hours?",
+      "expected_keywords": ["8am", "midnight"]
+    },
+    {
+      "question": "What should I do if my connection drops?",
+      "expected_keywords": ["unplug", "modem"]
+    },
+    {
+      "question": "What does a steady red PON light mean?",
+      "expected_keywords": ["fibre fault", "technician"]
+    },
+    {
+      "question": "When are Topnet invoices issued?",
+      "expected_keywords": ["1st"]
+    },
+    {
+      "question": "How many days do I have to pay before service is throttled?",
+      "expected_keywords": ["20 days"]
+    },
+    {
+      "question": "How much does reconnection cost after suspension?",
+      "expected_keywords": ["10 dinars"]
+    },
+    {
+      "question": "What happens if my line is suspended for more than 90 days?",
+      "expected_keywords": ["terminat"]
+    },
+    {
+      "question": "When does a plan upgrade take effect?",
+      "expected_keywords": ["immediately"]
+    },
+    {
+      "question": "When does a plan downgrade take effect?",
+      "expected_keywords": ["next billing cycle"]
+    },
+    {
+      "question": "Can I pause my Topnet subscription?",
+      "expected_keywords": ["pause", "3 months"]
+    },
+    {
+      "question": "What happens if I use more than 2 TB in a month?",
+      "expected_keywords": ["shap", "peak"]
+    },
+    {
+      "question": "At what usage level does Topnet send a warning email?",
+      "expected_keywords": ["1.5 tb"]
+    },
+    {
+      "question": "Can I run a public server on a residential line?",
+      "expected_keywords": ["not permitted", "business plan"]
+    },
+    {
+      "question": "How much does a static IPv4 address cost?",
+      "expected_keywords": ["15 dinars"]
+    },
+    {
+      "question": "How long does static IP provisioning take?",
+      "expected_keywords": ["2 working days"]
+    },
+    {
+      "question": "What uptime does the business SLA guarantee?",
+      "expected_keywords": ["99.7 percent"]
+    },
+    {
+      "question": "How much notice do I need to give before moving home?",
+      "expected_keywords": ["15 working days"]
+    },
+    {
+      "question": "How much is the moving transfer fee?",
+      "expected_keywords": ["40 dinars"]
+    },
+    {
+      "question": "Is the moving transfer fee waived for long-term customers?",
+      "expected_keywords": ["waived", "24 months"]
+    },
+    {
+      "question": "What happens if my new address has no Topnet coverage?",
+      "expected_keywords": ["cancel", "no penalty"]
+    },
+    {
+      "question": "How many days do I have to return the router after moving to an uncovered address?",
+      "expected_keywords": ["14 days"]
+    },
+    {
+      "question": "What minimum download speed does Topnet guarantee on fibre?",
+      "expected_keywords": ["80 percent"]
+    },
+    {
+      "question": "What can I do if my speed test shows less than 80% for multiple days?",
+      "expected_keywords": ["report a fault"]
+    },
+    {
+      "question": "Are Wi-Fi speeds guaranteed?",
+      "expected_keywords": ["not guaranteed"]
+    },
+    {
+      "question": "Does a fibre plan include a free modem?",
+      "expected_keywords": ["free", "modem"]
+    },
+    {
+      "question": "What is the capital of France?",
+      "expected_keywords": ["don't have that information", "do not have"]
+    },
+    {
+      "question": "Hi, how are you?",
+      "expected_keywords": ["hello", "hi", "help"]
+    }
+  ],
+  "fiat": [
+    {
+      "question": "How often should a petrol engine be serviced?",
+      "expected_keywords": ["15000 km", "12 months"]
+    },
+    {
+      "question": "How often should a diesel engine be serviced?",
+      "expected_keywords": ["20000 km"]
+    },
+    {
+      "question": "How much does an intermediate service cost?",
+      "expected_keywords": ["180 dinars"]
+    },
+    {
+      "question": "What's included in a full service?",
+      "expected_keywords": ["350 dinars", "air filter"]
+    },
+    {
+      "question": "When does the timing belt need to be replaced?",
+      "expected_keywords": ["120000 km", "5 years"]
+    },
+    {
+      "question": "Is timing belt replacement optional?",
+      "expected_keywords": ["not optional"]
+    },
+    {
+      "question": "Is a broken timing belt covered by warranty?",
+      "expected_keywords": ["not covered"]
+    },
+    {
+      "question": "Does missing a scheduled service automatically void my warranty?",
+      "expected_keywords": ["does not automatically void"]
+    },
+    {
+      "question": "Do I get a courtesy car for a service that takes more than a day?",
+      "expected_keywords": ["courtesy car", "free"]
+    },
+    {
+      "question": "What should I keep stamped at every service visit?",
+      "expected_keywords": ["service book"]
+    },
+    {
+      "question": "How long is roadside assistance free for?",
+      "expected_keywords": ["2 years"]
+    },
+    {
+      "question": "How much does roadside assistance cost after the warranty period?",
+      "expected_keywords": ["120 dinars"]
+    },
+    {
+      "question": "What number do I call for roadside assistance?",
+      "expected_keywords": ["80 100 200"]
+    },
+    {
+      "question": "Is the roadside assistance line available at night?",
+      "expected_keywords": ["24 hours"]
+    },
+    {
+      "question": "What's the target arrival time for roadside assistance in an urban area?",
+      "expected_keywords": ["45 minutes"]
+    },
+    {
+      "question": "What's the target arrival time for roadside assistance outside urban areas?",
+      "expected_keywords": ["90 minutes"]
+    },
+    {
+      "question": "Does roadside assistance cover a flat battery?",
+      "expected_keywords": ["flat battery"]
+    },
+    {
+      "question": "Does roadside assistance cover a lost key?",
+      "expected_keywords": ["lost key"]
+    },
+    {
+      "question": "If I run out of fuel, is the fuel itself covered by roadside assistance?",
+      "expected_keywords": ["fuel itself is not"]
+    },
+    {
+      "question": "What happens if my car can't be repaired the same day and I'm far from home?",
+      "expected_keywords": ["hotel", "200 dinars"]
+    },
+    {
+      "question": "When can roadside assistance be refused?",
+      "expected_keywords": ["refused", "inspection certificate"]
+    },
+    {
+      "question": "Does roadside assistance cover a puncture?",
+      "expected_keywords": ["puncture"]
+    },
+    {
+      "question": "What does an intermediate service include?",
+      "expected_keywords": ["oil", "20-point inspection"]
+    },
+    {
+      "question": "What's added in a full service compared to an intermediate one?",
+      "expected_keywords": ["spark plugs", "brake fluid"]
+    },
+    {
+      "question": "Does roadside assistance cover towing?",
+      "expected_keywords": ["towing"]
+    },
+    {
+      "question": "What happens to warranty cover if a failure is caused by missed maintenance?",
+      "expected_keywords": ["not covered"]
+    },
+    {
+      "question": "Is repeated roadside assistance for the same unrepaired fault covered?",
+      "expected_keywords": ["refused", "repeated"]
+    },
+    {
+      "question": "What is the capital of France?",
+      "expected_keywords": ["don't have that information", "do not have"]
+    },
+    {
+      "question": "Hi, how are you?",
+      "expected_keywords": ["hello", "hi", "help"]
+    },
+    {
+      "question": "How can I get roadside assistance?",
+      "expected_keywords": ["80 100 200"]
+    }
+  ],
+  "utm": [
+    {
+      "question": "When does undergraduate admission open?",
+      "expected_keywords": ["1 july"]
+    },
+    {
+      "question": "When does the undergraduate application window close?",
+      "expected_keywords": ["31 july"]
+    },
+    {
+      "question": "When is the minimum admission score published?",
+      "expected_keywords": ["august"]
+    },
+    {
+      "question": "What's the application window for a Master's degree?",
+      "expected_keywords": ["1 june", "15 july"]
+    },
+    {
+      "question": "What documents are needed for a Master's application file?",
+      "expected_keywords": ["licence diploma", "transcripts"]
+    },
+    {
+      "question": "When are shortlisted Master's candidates interviewed?",
+      "expected_keywords": ["september"]
+    },
+    {
+      "question": "How do international students apply?",
+      "expected_keywords": ["ministry of higher education", "equivalence"]
+    },
+    {
+      "question": "How long does the diploma equivalence certificate take?",
+      "expected_keywords": ["8 weeks"]
+    },
+    {
+      "question": "When should international students apply to allow time for equivalence?",
+      "expected_keywords": ["before 1 june"]
+    },
+    {
+      "question": "When is re-enrolment for continuing students?",
+      "expected_keywords": ["1 september", "30 september"]
+    },
+    {
+      "question": "What happens if a student misses re-enrolment?",
+      "expected_keywords": ["loses their place"]
+    },
+    {
+      "question": "What are the library's opening hours on weekdays?",
+      "expected_keywords": ["8am", "6pm"]
+    },
+    {
+      "question": "What are the library's Saturday hours?",
+      "expected_keywords": ["9am", "1pm"]
+    },
+    {
+      "question": "Is the library open on Sundays?",
+      "expected_keywords": ["closed"]
+    },
+    {
+      "question": "What are the library hours during the exam period?",
+      "expected_keywords": ["10pm"]
+    },
+    {
+      "question": "How many books can a Licence student borrow?",
+      "expected_keywords": ["3 books"]
+    },
+    {
+      "question": "How long can a Licence student keep a borrowed book?",
+      "expected_keywords": ["14 days"]
+    },
+    {
+      "question": "How many books can a Master student borrow?",
+      "expected_keywords": ["5 books"]
+    },
+    {
+      "question": "How many books can a doctoral student or staff member borrow?",
+      "expected_keywords": ["10 books"]
+    },
+    {
+      "question": "How many times can a library loan be renewed?",
+      "expected_keywords": ["twice"]
+    },
+    {
+      "question": "What is the late return fine for a library book?",
+      "expected_keywords": ["500 millimes"]
+    },
+    {
+      "question": "Is there a cap on the late return fine?",
+      "expected_keywords": ["20 dinars"]
+    },
+    {
+      "question": "Can I borrow books while I have an outstanding library fine?",
+      "expected_keywords": ["suspended"]
+    },
+    {
+      "question": "Can I take reference works and theses out of the library?",
+      "expected_keywords": ["consultation-only"]
+    },
+    {
+      "question": "What happens if I lose a borrowed library book?",
+      "expected_keywords": ["replacement cost", "10 dinar"]
+    },
+    {
+      "question": "How is undergraduate admission decided?",
+      "expected_keywords": ["national orientation system", "baccalaureate"]
+    },
+    {
+      "question": "What is required to prove a foreign diploma is equivalent?",
+      "expected_keywords": ["equivalence certificate"]
+    },
+    {
+      "question": "Can a library loan be renewed if another reader has reserved the book?",
+      "expected_keywords": ["cannot", "reserved"]
+    },
+    {
+      "question": "What is the capital of France?",
+      "expected_keywords": ["don't have that information", "do not have"]
+    },
+    {
+      "question": "Hi, how are you?",
+      "expected_keywords": ["hello", "hi", "help"]
+    }
+  ],
+  "globalnet": [
+    {
+      "question": "How much is the Home 300 plan?",
+      "expected_keywords": ["50 dollars"]
+    },
+    {
+      "question": "How much is the Home Gig plan and what speed does it offer?",
+      "expected_keywords": ["75 dollars", "1000"]
+    },
+    {
+      "question": "Does the Home plan include a free router?",
+      "expected_keywords": ["free", "router"]
+    },
+    {
+      "question": "How much is the installation fee without a 12-month term?",
+      "expected_keywords": ["60 dollars"]
+    },
+    {
+      "question": "What discount do students and seniors get?",
+      "expected_keywords": ["15 percent"]
+    },
+    {
+      "question": "When are GlobalNet invoices issued?",
+      "expected_keywords": ["1st"]
+    },
+    {
+      "question": "How many days do I have to pay my invoice?",
+      "expected_keywords": ["14 days"]
+    },
+    {
+      "question": "What payment methods does GlobalNet accept?",
+      "expected_keywords": ["credit card", "bank transfer"]
+    },
+    {
+      "question": "What's the late payment fee?",
+      "expected_keywords": ["5 dollars"]
+    },
+    {
+      "question": "When is service suspended for non-payment?",
+      "expected_keywords": ["21 days"]
+    },
+    {
+      "question": "When is service fully disconnected for non-payment?",
+      "expected_keywords": ["45 days"]
+    },
+    {
+      "question": "Can I get a refund if I cancel a new subscription?",
+      "expected_keywords": ["14 days", "refund"]
+    },
+    {
+      "question": "What condition must the router be in for a cancellation refund?",
+      "expected_keywords": ["undamaged"]
+    },
+    {
+      "question": "What are GlobalNet's support hours?",
+      "expected_keywords": ["24/7"]
+    },
+    {
+      "question": "What's the phone number for GlobalNet support?",
+      "expected_keywords": ["1-800-globalnet"]
+    },
+    {
+      "question": "What's the average support wait time?",
+      "expected_keywords": ["3 minutes"]
+    },
+    {
+      "question": "How do I reset my GlobalNet router?",
+      "expected_keywords": ["10 seconds", "reset"]
+    },
+    {
+      "question": "How long after resetting does the router take to reconnect?",
+      "expected_keywords": ["3 minutes"]
+    },
+    {
+      "question": "Where can I find my default Wi-Fi password?",
+      "expected_keywords": ["underside", "router"]
+    },
+    {
+      "question": "What does a steady red status light mean?",
+      "expected_keywords": ["fiber", "down"]
+    },
+    {
+      "question": "How quickly is a technician scheduled for a fiber outage?",
+      "expected_keywords": ["2 business days"]
+    },
+    {
+      "question": "Is the technician visit free for active subscribers?",
+      "expected_keywords": ["free", "active subscribers"]
+    },
+    {
+      "question": "Does GlobalNet offer unlimited data?",
+      "expected_keywords": ["unlimited"]
+    },
+    {
+      "question": "Is autopay available?",
+      "expected_keywords": ["autopay"]
+    },
+    {
+      "question": "What happens if my service is disconnected after 45 days?",
+      "expected_keywords": ["new installation"]
+    },
+    {
+      "question": "How can I submit proof of student or senior eligibility?",
+      "expected_keywords": ["customer portal"]
+    },
+    {
+      "question": "What speed does the Home 100 plan offer?",
+      "expected_keywords": ["100 mbps"]
+    },
+    {
+      "question": "What is the capital of France?",
+      "expected_keywords": ["don't have that information", "do not have"]
+    },
+    {
+      "question": "Hi, how are you?",
+      "expected_keywords": ["hello", "hi", "help"]
+    },
+    {
+      "question": "Can I chat with support instead of calling?",
+      "expected_keywords": ["chat"]
+    }
+  ]
+}

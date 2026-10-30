@@ -1,0 +1,3 @@
+Telecom Billing.
+Invoices are issued on the first of each month and cover that month. Payment is due within 14 days. Accepted methods: credit card, SEPA direct debit, and bank transfer. Late payments incur a 5 percent fee after 14 days, and service may be suspended after 30 days overdue.
+Refunds: a customer may request a refund within 14 days of a new subscription (cooling-off period). Prorated refunds are issued when downgrading a plan mid-cycle.

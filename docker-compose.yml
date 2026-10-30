@@ -1,0 +1,160 @@
+
+# Shared by every dedicated Qdrant below — they differ only in name, ports and
+# volume, so the rest lives here once.
+x-qdrant-dedicated: &qdrant-dedicated
+  image: qdrant/qdrant:latest
+  restart: unless-stopped
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: orange-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: orange
+      POSTGRES_PASSWORD: orange
+      POSTGRES_DB: orange
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U orange -d orange"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: orange-qdrant
+    restart: unless-stopped
+    ports:
+      - "6333:6333"   # REST API + web dashboard at http://localhost:6333/dashboard
+      - "6334:6334"   # gRPC
+    volumes:
+      - qdrantdata:/qdrant/storage
+
+  # --- Dedicated Qdrant pool -------------------------------------------------
+  # Instances a single tenant can be given exclusively, instead of sharing the
+  # `qdrant` service above. A company created with isolation="dedicated" claims
+  # one of these (backend/app/services/qdrant_pool.py) and is the only tenant on
+  # it — separate process, separate volume, separate blast radius.
+  #
+  # The pool is fixed rather than created on demand: spawning containers from the
+  # app would mean giving the backend the Docker socket. These containers all run
+  # from the moment you `docker compose up -d` — creating a dedicated company does
+  # NOT start one, it claims one that is already up. Removing a block a company
+  # still holds strands that tenant's KB.
+  #
+  # To add capacity: add a service below with the next port pair (REST = 6343 +
+  # 10*n), a matching volume at the bottom, and its URL to QDRANT_DEDICATED_URLS.
+  qdrant-dedicated-1:
+    <<: *qdrant-dedicated
+    container_name: orange-qdrant-ded-1
+    ports:
+      - "6343:6333"   # dashboard at http://localhost:6343/dashboard
+      - "6344:6334"
+    volumes:
+      - qdrantded1:/qdrant/storage
+
+  qdrant-dedicated-2:
+    <<: *qdrant-dedicated
+    container_name: orange-qdrant-ded-2
+    ports:
+      - "6353:6333"
+      - "6354:6334"
+    volumes:
+      - qdrantded2:/qdrant/storage
+
+  qdrant-dedicated-3:
+    <<: *qdrant-dedicated
+    container_name: orange-qdrant-ded-3
+    ports:
+      - "6363:6333"
+      - "6364:6334"
+    volumes:
+      - qdrantded3:/qdrant/storage
+
+  qdrant-dedicated-4:
+    <<: *qdrant-dedicated
+    container_name: orange-qdrant-ded-4
+    ports:
+      - "6373:6333"
+      - "6374:6334"
+    volumes:
+      - qdrantded4:/qdrant/storage
+
+  qdrant-dedicated-5:
+    <<: *qdrant-dedicated
+    container_name: orange-qdrant-ded-5
+    ports:
+      - "6383:6333"
+      - "6384:6334"
+    volumes:
+      - qdrantded5:/qdrant/storage
+
+  qdrant-dedicated-6:
+    <<: *qdrant-dedicated
+    container_name: orange-qdrant-ded-6
+    ports:
+      - "6393:6333"
+      - "6394:6334"
+    volumes:
+      - qdrantded6:/qdrant/storage
+
+  qdrant-dedicated-7:
+    <<: *qdrant-dedicated
+    container_name: orange-qdrant-ded-7
+    ports:
+      - "6403:6333"
+      - "6404:6334"
+    volumes:
+      - qdrantded7:/qdrant/storage
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: orange-pgadmin
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@orange.com
+      PGADMIN_DEFAULT_PASSWORD: orange
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+    ports:
+      - "5050:80"     # GUI at http://localhost:5050
+    volumes:
+      - pgadmindata:/var/lib/pgadmin
+    depends_on:
+      - postgres
+
+  # Tracing/tracking + prompt registry + eval, per the diagram's MLflow box.
+  # Container port stays 5000 (mlflow's default); host side is 5001 since 5000
+  # is already run.py's (Flask) port. Data + artifacts live in their own
+  # volumes so `docker compose down -v` is the only thing that wipes traces.
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:v3.15.0
+    container_name: orange-mlflow
+    restart: unless-stopped
+    command: >
+      mlflow server --backend-store-uri sqlite:////mlflow/data/mlflow.db
+      --default-artifact-root /mlflow/artifacts --host 0.0.0.0 --port 5000
+    ports:
+      - "5001:5000"   # UI/API at http://localhost:5001
+    volumes:
+      - mlflowdata:/mlflow/data
+      - mlflowartifacts:/mlflow/artifacts
+
+volumes:
+  pgdata:
+  qdrantdata:
+  pgadmindata:
+  # One volume per dedicated instance — the point is that a dedicated tenant's
+  # storage can be backed up or destroyed without touching anyone else's.
+  qdrantded1:
+  qdrantded2:
+  qdrantded3:
+  qdrantded4:
+  qdrantded5:
+  qdrantded6:
+  qdrantded7:
+  mlflowdata:
+  mlflowartifacts:

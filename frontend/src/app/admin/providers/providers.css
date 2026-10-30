@@ -1,0 +1,192 @@
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--sh-1);
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+  animation: rise-in 0.3s var(--ease-out) both;
+}
+
+.form h3 {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0.9rem;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+.muted {
+  color: var(--ink-3);
+  font-weight: 500;
+}
+
+input {
+  padding: 0.55rem 0.65rem;
+  font-size: 0.9rem;
+}
+
+.toggles {
+  display: flex;
+  gap: 1.5rem;
+  margin: 1.1rem 0;
+}
+
+.check {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.actions {
+  display: flex;
+  gap: 0.6rem;
+}
+
+button {
+  cursor: pointer;
+  border-radius: var(--r-sm);
+  font-size: 0.86rem;
+  font-weight: 600;
+  padding: 0.5rem 0.95rem;
+  border: 1px solid transparent;
+  transition: background 0.15s var(--ease), border-color 0.15s var(--ease),
+    transform 0.05s var(--ease);
+}
+button:active {
+  transform: translateY(1px);
+}
+
+.primary {
+  background: var(--brand);
+  color: #fff;
+  border: none;
+  box-shadow: 0 1px 2px rgba(204, 91, 0, 0.35);
+}
+.primary:hover {
+  background: var(--brand-600);
+}
+
+.ghost {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--ink);
+}
+.ghost:hover {
+  background: var(--surface-2);
+  border-color: #d3d8e0;
+}
+
+.ghost.sm {
+  padding: 0.35rem 0.65rem;
+  font-size: 0.78rem;
+}
+
+.ghost.danger {
+  color: var(--danger);
+  border-color: var(--danger-line);
+}
+.ghost.danger:hover {
+  background: var(--danger-bg);
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.88rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--sh-1);
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.65rem 0.8rem;
+  border-bottom: 1px solid var(--line-2);
+  vertical-align: middle;
+}
+tbody tr {
+  transition: background 0.12s var(--ease);
+}
+tbody tr:hover {
+  background: var(--surface-2);
+}
+tr:last-child td {
+  border-bottom: none;
+}
+
+th {
+  color: var(--ink-3);
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: var(--surface-2);
+}
+
+.pill {
+  padding: 0.16rem 0.65rem;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  color: var(--ink-3);
+  font-size: 0.74rem;
+  font-weight: 600;
+}
+
+.pill.on {
+  background: var(--ok-bg);
+  border-color: var(--ok-line);
+  color: var(--ok);
+}
+
+.row-actions {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.test-result {
+  margin-top: 0.35rem;
+  font-size: 0.72rem;
+  color: var(--ink-2);
+  max-width: 180px;
+}
+
+.center {
+  text-align: center;
+  color: var(--ink-3);
+}
+
+.error {
+  background: var(--danger-bg);
+  border: 1px solid var(--danger-line);
+  color: var(--danger);
+  padding: 0.6rem 0.85rem;
+  border-radius: var(--r-sm);
+  margin-bottom: 1.25rem;
+  font-size: 0.88rem;
+}

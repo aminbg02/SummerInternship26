@@ -1,0 +1,61 @@
+<div class="login-page">
+  <section class="hero">
+    <div class="hero-top">
+      <span class="hero-mark">O</span>
+      <span class="hero-brand">Orange</span>
+    </div>
+
+    <div class="hero-copy">
+      <h1>{{ lang.t('login.heroTitleLine1') }}<br />{{ lang.t('login.heroTitleLine2') }}</h1>
+      <p>{{ lang.t('login.heroBody') }}</p>
+    </div>
+
+    <ul class="hero-points">
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        {{ lang.t('login.point1') }}
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        {{ lang.t('login.point2') }}
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        {{ lang.t('login.point3') }}
+      </li>
+    </ul>
+
+    <app-language-switcher />
+
+    <div class="hero-glow" aria-hidden="true"></div>
+  </section>
+
+  <section class="form-side">
+    <form class="login-card" (ngSubmit)="submit()">
+      <h2>{{ lang.t('login.signIn') }}</h2>
+      <p class="subtitle">{{ lang.t('login.subtitle') }}</p>
+
+      <label>
+        {{ lang.t('common.email') }}
+        <input type="email" name="email" [(ngModel)]="email" autocomplete="username"
+               placeholder="alice@acme.com" required />
+      </label>
+
+      <label>
+        {{ lang.t('common.password') }}
+        <input type="password" name="password" [(ngModel)]="password"
+               autocomplete="current-password" placeholder="••••••••" required />
+      </label>
+
+      @if (error()) {
+        <div class="error">{{ error() }}</div>
+      }
+
+      <button class="submit" type="submit" [disabled]="loading()">
+        {{ loading() ? lang.t('login.signingIn') : lang.t('login.signIn') }}
+      </button>
+    </form>
+
+    <p class="foot">{{ lang.t('login.footer') }}</p>
+  </section>
+</div>

@@ -1,0 +1,4 @@
+Telecom Prepaid Top-up.
+Prepaid credit can be topped up in a store, in the app, or with a scratch card. The minimum top-up is 5 euros and the maximum single top-up is 100 euros.
+Credit is valid for 6 months from the last top-up. If no top-up occurs for 6 months, the line is suspended; the number is released after a further 3 months and cannot be recovered.
+Prepaid data packs: 1 GB for 2 euros valid 7 days, 5 GB for 7 euros valid 30 days, 20 GB for 18 euros valid 30 days. Unused pack data does not roll over.

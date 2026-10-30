@@ -1,0 +1,137 @@
+<section class="token-requests">
+  <div class="page-head">
+    <div>
+      <h2>{{ lang.t('tokenRequests.title') }}</h2>
+      <p class="lede">{{ lede() }}</p>
+    </div>
+  </div>
+
+  @if (canCreate()) {
+    <form class="create" (ngSubmit)="create()">
+      <div class="row">
+        <input
+          type="number"
+          name="requestedLimit"
+          min="0"
+          step="1000"
+          [placeholder]="limitPlaceholder()"
+          [(ngModel)]="requestedLimit"
+        />
+        <input
+          type="text"
+          name="reason"
+          class="reason-input"
+          [placeholder]="lang.t('tokenRequests.reasonPlaceholder')"
+          [(ngModel)]="reason"
+        />
+        <button type="submit" [disabled]="busy()">{{ lang.t('tokenRequests.submit') }}</button>
+      </div>
+      <p class="hint">{{ formLabel() }}</p>
+    </form>
+  }
+
+  @if (notice()) {
+    <p class="notice">{{ notice() }}</p>
+  }
+  @if (error()) {
+    <p class="error">{{ error() }}</p>
+  }
+
+  @if (canReview()) {
+    <h3 class="section-title">{{ lang.t('tokenRequests.reviewSectionTitle') }}</h3>
+    <table class="grid">
+      <thead>
+        <tr>
+          <th>{{ lang.t('tokenRequests.colRequester') }}</th>
+          <th>{{ lang.t('tokenRequests.colCompany') }}</th>
+          <th>{{ lang.t('tokenRequests.colRequested') }}</th>
+          <th>{{ lang.t('tokenRequests.colReason') }}</th>
+          <th>{{ lang.t('tokenRequests.colFiled') }}</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (r of reviewable(); track r.id) {
+          <tr>
+            <td>{{ r.requester_email }}</td>
+            <td>{{ r.company_name }}</td>
+            <td class="requested">
+              {{ requestedLabel(r) }}
+              <span class="scope-tag">{{ scopeLabel(r) }}</span>
+            </td>
+            <td class="reason">{{ r.reason }}</td>
+            <td>{{ filedAt(r) }}</td>
+            <td class="actions">
+              @if (rejectingId() === r.id) {
+                <div class="reject-edit">
+                  <input
+                    type="text"
+                    [placeholder]="lang.t('tokenRequests.rejectReasonPlaceholder')"
+                    [(ngModel)]="rejectReasonDraft"
+                    [ngModelOptions]="{ standalone: true }"
+                    (keyup.escape)="cancelReject()"
+                  />
+                  <button type="button" class="danger" [disabled]="busy()" (click)="confirmReject(r)">
+                    {{ lang.t('tokenRequests.confirmReject') }}
+                  </button>
+                  <button type="button" class="link" (click)="cancelReject()">
+                    {{ lang.t('tokenRequests.cancel') }}
+                  </button>
+                </div>
+              } @else {
+                <button type="button" class="approve" [disabled]="busy()" (click)="approve(r)">
+                  {{ lang.t('tokenRequests.approve') }}
+                </button>
+                <button type="button" class="danger" [disabled]="busy()" (click)="startReject(r)">
+                  {{ lang.t('tokenRequests.reject') }}
+                </button>
+              }
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="6" class="empty">{{ lang.t('tokenRequests.reviewEmpty') }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+
+  @if (canCreate()) {
+    <h3 class="section-title">{{ lang.t('tokenRequests.myRequestsTitle') }}</h3>
+    <table class="grid">
+      <thead>
+        <tr>
+          <th>{{ lang.t('tokenRequests.colRequested') }}</th>
+          <th>{{ lang.t('tokenRequests.colReason') }}</th>
+          <th>{{ lang.t('tokenRequests.colStatus') }}</th>
+          <th>{{ lang.t('tokenRequests.colFiled') }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (r of myRequests(); track r.id) {
+          <tr>
+            <td class="requested">{{ requestedLabel(r) }}</td>
+            <td class="reason">{{ r.reason }}</td>
+            <td>
+              <span class="badge" [class]="'status-' + r.status">
+                {{ statusLabel(r) }}
+              </span>
+              @if (r.status === 'rejected' && r.decision_reason) {
+                <p class="decision-reason">{{ r.decision_reason }}</p>
+              }
+              @if (r.status !== 'pending' && r.reviewed_by_email) {
+                <p class="reviewed-by">{{ lang.t('tokenRequests.reviewedBy', { email: r.reviewed_by_email }) }}</p>
+              }
+            </td>
+            <td>{{ filedAt(r) }}</td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="4" class="empty">{{ lang.t('tokenRequests.myRequestsEmpty') }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</section>

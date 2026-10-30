@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "orange-admin": {
+      "command": "C:\\Users\\Amin\\Desktop\\SummerInternProject\\mcp-admin-server\\.venv\\Scripts\\python.exe",
+      "args": [
+        "C:\\Users\\Amin\\Desktop\\SummerInternProject\\mcp-admin-server\\server.py"
+      ],
+      "env": {
+        "ORANGE_ADMIN_EMAIL": "admin@orange.com",
+        "ORANGE_ADMIN_PASSWORD": "password123",
+        "ORANGE_API_BASE": "http://localhost:5000/api"
+      }
+    }
+  }
+}

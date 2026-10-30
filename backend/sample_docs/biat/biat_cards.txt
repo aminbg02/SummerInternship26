@@ -1,0 +1,3 @@
+BIAT Bank Cards.
+Card options: CIB national debit card (40 dinars/year), Visa Classic international (90 dinars/year), and Visa Gold (180 dinars/year with travel insurance). 
+Default limits on a Visa Classic: 1000 dinars/day for ATM withdrawals and 3000 dinars/day for payments; limits can be raised temporarily in the app. If your card is lost or stolen, block it immediately in the BIAT Net app or call 71 340 733, then request a replacement at any branch (issued within 5 business days).

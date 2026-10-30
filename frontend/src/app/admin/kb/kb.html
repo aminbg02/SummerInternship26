@@ -1,0 +1,148 @@
+<div class="kb">
+  <div class="page-head">
+    <div>
+      <h2>{{ lang.t('kb.title') }}</h2>
+      <p class="lede">{{ lang.t('kb.lede') }}</p>
+    </div>
+    <label class="company-select">
+      {{ lang.t('kb.company') }}
+      <select name="company" [(ngModel)]="companyId" (ngModelChange)="onCompanyChange()">
+        @for (c of companies(); track c.id) {
+          <option [ngValue]="c.id">{{ c.name }}</option>
+        }
+      </select>
+    </label>
+  </div>
+
+  <p class="note">{{ lang.t('kb.note') }}</p>
+
+  <div class="card upload">
+    <label class="filebtn" [class.disabled]="busy() || companyId == null">
+      {{ lang.t('kb.addDocument') }}
+      <input type="file" (change)="onFileSelected($event)" hidden [disabled]="busy()" />
+    </label>
+    @if (result()) { <span class="result">{{ result() }}</span> }
+    @if (error()) { <span class="error">{{ error() }}</span> }
+  </div>
+
+  <div class="card">
+    <h3>{{ lang.t('kb.ingestionHistory') }}</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>{{ lang.t('kb.colWhen') }}</th><th>{{ lang.t('kb.colFile') }}</th><th>{{ lang.t('kb.colIndexed') }}</th><th>{{ lang.t('kb.colBlocked') }}</th><th>{{ lang.t('kb.colByUser') }}</th><th></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (i of ingestions(); track i.id) {
+          <tr [class.removed]="isRemoved(i)">
+            <td class="muted">{{ i.created_at }}</td>
+            <td>
+              {{ i.filename }}
+              @if (isRemoved(i)) { <span class="badge">{{ lang.t('kb.removed') }}</span> }
+            </td>
+            <td>{{ i.chunks_indexed }}</td>
+            <td>{{ i.chunks_blocked }}</td>
+            <td class="muted">{{ i.user_id }}</td>
+            <td class="actions">
+              @if (isRemoved(i)) {
+                <span class="muted">—</span>
+              } @else {
+                <button
+                  type="button"
+                  class="icon"
+                  [title]="lang.t('kb.previewTitle')"
+                  [attr.aria-label]="lang.t('kb.previewTitle')"
+                  [disabled]="i.document_id == null"
+                  (click)="openPreview(i)"
+                >
+                  <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+                    <path
+                      d="M1.5 12S5 5.5 12 5.5 22.5 12 22.5 12 19 18.5 12 18.5 1.5 12 1.5 12Z"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.7"
+                      stroke-linejoin="round"
+                    />
+                    <circle
+                      cx="12"
+                      cy="12"
+                      r="3.2"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.7"
+                    />
+                  </svg>
+                </button>
+                <button
+                  type="button"
+                  class="danger"
+                  [disabled]="removingId() !== null || i.document_id == null"
+                  (click)="remove(i)"
+                >
+                  {{ removingId() === i.id ? lang.t('kb.removing') : lang.t('kb.remove') }}
+                </button>
+              }
+            </td>
+          </tr>
+        } @empty {
+          <tr><td colspan="6" class="muted center">{{ lang.t('kb.emptyHistory') }}</td></tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  @if (deletions().length) {
+    <div class="card">
+      <h3>{{ lang.t('kb.removalHistory') }}</h3>
+      <table>
+        <thead>
+          <tr><th>{{ lang.t('kb.colWhen') }}</th><th>{{ lang.t('kb.colFile') }}</th><th>{{ lang.t('kb.colChunksDeleted') }}</th><th>{{ lang.t('kb.colByUser') }}</th></tr>
+        </thead>
+        <tbody>
+          @for (d of deletions(); track d.id) {
+            <tr>
+              <td class="muted">{{ d.created_at }}</td>
+              <td>{{ d.filename }}</td>
+              <td>{{ d.chunks_deleted }}</td>
+              <td class="muted">{{ d.user_id }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+
+  @if (previewingId() !== null) {
+    <div class="backdrop" (click)="closePreview()">
+      <div
+        class="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="preview-title"
+        (click)="$event.stopPropagation()"
+      >
+        <div class="modal-head">
+          <h3 id="preview-title">{{ preview()?.filename ?? lang.t('kb.previewDefaultTitle') }}</h3>
+          <button type="button" class="close" [attr.aria-label]="lang.t('kb.close')" (click)="closePreview()">×</button>
+        </div>
+
+        @if (previewError(); as msg) {
+          <p class="error">{{ msg }}</p>
+        } @else if (preview(); as doc) {
+          <p class="hint">{{ lang.t('kb.previewBody', { count: doc.chunks.length }) }}</p>
+          @for (c of doc.chunks; track c.id; let idx = $index) {
+            <div class="chunk">
+              <span class="chunk-num">{{ lang.t('kb.chunk', { n: idx + 1 }) }}</span>
+              <p class="chunk-text">{{ c.text }}</p>
+            </div>
+          } @empty {
+            <p class="muted center">{{ lang.t('kb.previewEmpty') }}</p>
+          }
+        } @else {
+          <p class="muted center">{{ lang.t('kb.loading') }}</p>
+        }
+      </div>
+    </div>
+  }
+</div>

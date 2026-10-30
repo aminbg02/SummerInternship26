@@ -1,0 +1,108 @@
+<div class="providers">
+  <div class="page-head">
+    <div>
+      <h2>{{ lang.t('providers.title') }}</h2>
+      <p class="lede">{{ lang.t('providers.lede') }}</p>
+    </div>
+    <button class="primary" (click)="startCreate()">{{ lang.t('providers.add') }}</button>
+  </div>
+
+  @if (error()) {
+    <div class="error">{{ error() }}</div>
+  }
+
+  @if (showForm()) {
+    <form class="card form" (ngSubmit)="save()">
+      <h3>{{ form.id == null ? lang.t('providers.addTitle') : lang.t('providers.editTitle') }}</h3>
+      <div class="grid">
+        <label>{{ lang.t('providers.displayName') }}
+          <input name="display_name" [(ngModel)]="form.display_name" required
+                 placeholder="Llama 3.3 70B (Groq)" />
+        </label>
+        <label>{{ lang.t('providers.providerKey') }}
+          <input name="provider_key" [(ngModel)]="form.provider_key" required
+                 placeholder="groq, gemini, openrouter, ollama…" />
+        </label>
+        <label>{{ lang.t('providers.modelName') }}
+          <input name="model_name" [(ngModel)]="form.model_name" required
+                 placeholder="llama-3.3-70b-versatile" />
+        </label>
+        <label>{{ lang.t('providers.baseUrl') }} <span class="muted">{{ lang.t('providers.baseUrlHint') }}</span>
+          <input name="base_url" [(ngModel)]="form.base_url"
+                 placeholder="https://api.groq.com/openai/v1" />
+        </label>
+        <label>{{ lang.t('providers.apiKey') }} <span class="muted">{{ lang.t('providers.apiKeyHint') }}</span>
+          <input name="api_key" type="password" [(ngModel)]="form.api_key"
+                 [placeholder]="form.id == null ? lang.t('providers.apiKeyPlaceholderNew') : lang.t('providers.apiKeyPlaceholderEdit')" />
+        </label>
+        <label>{{ lang.t('providers.priority') }} <span class="muted">{{ lang.t('providers.priorityHint') }}</span>
+          <input name="priority" type="number" [(ngModel)]="form.priority" />
+        </label>
+        <label>{{ lang.t('providers.rpm') }}
+          <input name="rpm" type="number" [(ngModel)]="form.rate_limit_rpm" placeholder="e.g. 30" />
+        </label>
+        <label>{{ lang.t('providers.rpd') }}
+          <input name="rpd" type="number" [(ngModel)]="form.rate_limit_rpd" placeholder="e.g. 1000" />
+        </label>
+        <label>{{ lang.t('providers.defaultTemp') }} <span class="muted">{{ lang.t('providers.defaultTempHint') }}</span>
+          <input name="default_temperature" type="number" step="0.1" min="0" max="2"
+                 [(ngModel)]="form.default_temperature" placeholder="e.g. 0.2" />
+        </label>
+        <label>{{ lang.t('providers.maxOutputTokens') }} <span class="muted">{{ lang.t('providers.maxOutputTokensHint') }}</span>
+          <input name="max_output_tokens" type="number" min="1"
+                 [(ngModel)]="form.max_output_tokens" placeholder="e.g. 1024" />
+        </label>
+      </div>
+      <div class="toggles">
+        <label class="check"><input type="checkbox" name="enabled" [(ngModel)]="form.enabled" /> {{ lang.t('providers.enabled') }}</label>
+        <label class="check"><input type="checkbox" name="is_free" [(ngModel)]="form.is_free" /> {{ lang.t('providers.freeTier') }}</label>
+      </div>
+      <div class="actions">
+        <button type="submit" class="primary">{{ form.id == null ? lang.t('providers.create') : lang.t('providers.save') }}</button>
+        <button type="button" class="ghost" (click)="cancel()">{{ lang.t('providers.cancel') }}</button>
+      </div>
+    </form>
+  }
+
+  <div class="card">
+    <table>
+      <thead>
+        <tr>
+          <th>{{ lang.t('providers.colName') }}</th><th>{{ lang.t('providers.colKey') }}</th><th>{{ lang.t('providers.colModel') }}</th><th>{{ lang.t('providers.colEnabled') }}</th><th>{{ lang.t('providers.colFree') }}</th>
+          <th>{{ lang.t('providers.colRpmRpd') }}</th><th>{{ lang.t('providers.colTempMax') }}</th><th>{{ lang.t('providers.colPrio') }}</th><th>{{ lang.t('providers.colApiKey') }}</th><th>{{ lang.t('providers.colTest') }}</th><th></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (p of providers(); track p.id) {
+          <tr>
+            <td>{{ p.display_name }}</td>
+            <td><code>{{ p.provider_key }}</code></td>
+            <td class="muted">{{ p.model_name }}</td>
+            <td>
+              <button class="pill" [class.on]="p.enabled" (click)="toggleEnabled(p)">
+                {{ p.enabled ? lang.t('providers.on') : lang.t('providers.off') }}
+              </button>
+            </td>
+            <td>{{ p.is_free ? '✓' : '—' }}</td>
+            <td class="muted">{{ p.rate_limit_rpm ?? '—' }} / {{ p.rate_limit_rpd ?? '—' }}</td>
+            <td class="muted">{{ p.default_temperature ?? '—' }} / {{ p.max_output_tokens ?? '—' }}</td>
+            <td>{{ p.priority }}</td>
+            <td>{{ p.has_api_key ? '🔑' : '—' }}</td>
+            <td>
+              <button class="ghost sm" (click)="test(p)">{{ lang.t('providers.test') }}</button>
+              @if (testResults()[p.id]) {
+                <div class="test-result">{{ testResults()[p.id] }}</div>
+              }
+            </td>
+            <td class="row-actions">
+              <button class="ghost sm" (click)="startEdit(p)">{{ lang.t('providers.edit') }}</button>
+              <button class="ghost sm danger" (click)="remove(p)">{{ lang.t('providers.deleteAction') }}</button>
+            </td>
+          </tr>
+        } @empty {
+          <tr><td colspan="11" class="muted center">{{ lang.t('providers.empty') }}</td></tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

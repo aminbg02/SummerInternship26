@@ -1,0 +1,4 @@
+Telecom Mobile App.
+The app allows a customer to view their invoice, check remaining data, top up a prepaid line, change plan, and report a fault.
+Data usage in the app is refreshed every 15 minutes and may lag real usage slightly; the invoice is always authoritative. A plan change made in the app takes effect on the first day of the next billing cycle, except for an upgrade, which takes effect immediately with the difference prorated.
+The app requires the SIM to be active. If a customer is locked out, an SMS reset code is sent to the registered number and is valid for 10 minutes.

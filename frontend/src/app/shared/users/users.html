@@ -1,0 +1,125 @@
+<section class="users">
+  <div class="page-head">
+    <div>
+      <h2>{{ lang.t('users.title') }}</h2>
+      <p class="lede">{{ lang.t('users.lede') }}</p>
+      @if (!isSuperAdmin() && companyPool() !== undefined) {
+        <p class="company-pool">{{ companyPoolLabel() }}</p>
+      }
+    </div>
+  </div>
+
+  <form class="create" (ngSubmit)="create()">
+    <div class="row">
+      <input
+        type="email"
+        name="email"
+        [placeholder]="lang.t('users.emailPlaceholder')"
+        [(ngModel)]="email"
+        autocomplete="off"
+      />
+      <input
+        type="password"
+        name="password"
+        [placeholder]="lang.t('users.passwordPlaceholder')"
+        [(ngModel)]="password"
+        autocomplete="new-password"
+      />
+      @if (isSuperAdmin()) {
+        <select name="role" [(ngModel)]="role">
+          <option value="customer">customer</option>
+          <option value="company_admin">company_admin</option>
+          <option value="super_admin">super_admin</option>
+        </select>
+      }
+      @if (!(isSuperAdmin() && role === 'super_admin')) {
+        <input
+          type="number"
+          name="newCap"
+          class="cap-input"
+          min="0"
+          step="1000"
+          [placeholder]="lang.t('users.capPlaceholder')"
+          [(ngModel)]="newCap"
+        />
+      }
+      <button type="submit" [disabled]="busy()">{{ lang.t('users.add') }}</button>
+    </div>
+    @if (!isSuperAdmin()) {
+      <p class="hint">
+        {{ lang.t('users.hintCompanyAdmin') }}
+        {{ lang.t('users.hintCapTail') }}
+      </p>
+    }
+  </form>
+
+  @if (notice()) {
+    <p class="notice">{{ notice() }}</p>
+  }
+  @if (error()) {
+    <p class="error">{{ error() }}</p>
+  }
+
+  <table class="grid">
+    <thead>
+      <tr>
+        <th>{{ lang.t('users.colId') }}</th>
+        <th>{{ lang.t('users.colEmail') }}</th>
+        <th>{{ lang.t('users.colRole') }}</th>
+        <th>{{ lang.t('users.colCompany') }}</th>
+        <th>{{ lang.t('users.colCap') }}</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (u of rows(); track u.id) {
+        <tr>
+          <td>{{ u.id }}</td>
+          <td>{{ u.email }}</td>
+          <td><span class="badge" [class]="'badge role-' + u.role">{{ u.role }}</span></td>
+          <td>{{ u.company_id ?? '—' }}</td>
+          <td class="cap">
+            @if (editingCap() === u.id) {
+              <div class="cap-edit">
+                <input
+                  type="number"
+                  min="0"
+                  step="1000"
+                  class="cap-input"
+                  [placeholder]="lang.t('users.capPlaceholderEdit')"
+                  [(ngModel)]="capDraft"
+                  [ngModelOptions]="{ standalone: true }"
+                  (keyup.enter)="saveCap(u)"
+                  (keyup.escape)="cancelEditCap()"
+                />
+                <button type="button" class="link save" [disabled]="busy()" (click)="saveCap(u)">
+                  {{ lang.t('users.save') }}
+                </button>
+                <button type="button" class="link" (click)="cancelEditCap()">{{ lang.t('users.cancel') }}</button>
+                @if (ceilingFor(u); as ceiling) {
+                  <span class="ceiling">{{ lang.t('users.max', { n: ceiling.toLocaleString() }) }}</span>
+                }
+              </div>
+            } @else {
+              <span class="cap-value" [class.inherited]="u.daily_token_limit === null">
+                {{ capLabel(u) }}
+              </span>
+              @if (canSetCap(u)) {
+                <button type="button" class="link" (click)="startEditCap(u)">{{ lang.t('users.edit') }}</button>
+              }
+            }
+          </td>
+          <td class="actions">
+            @if (canDelete(u)) {
+              <button type="button" class="danger" (click)="remove(u)">{{ lang.t('users.delete') }}</button>
+            }
+          </td>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="6" class="empty">{{ lang.t('users.empty') }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</section>

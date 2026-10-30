@@ -1,0 +1,18 @@
+[orange] Database: Postgres (localhost:5432/orange)
+[orange] Vectors:  Qdrant server (http://localhost:6333)
+ * Serving Flask app 'app'
+ * Debug mode: on
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http://127.0.0.1:5000
+Press CTRL+C to quit
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 776-806-234
+127.0.0.1 - - [11/Aug/2026 12:54:53] "GET /api/health HTTP/1.1" 200 -
+127.0.0.1 - - [11/Aug/2026 12:54:53] "OPTIONS /api/llm-providers HTTP/1.1" 200 -
+127.0.0.1 - - [11/Aug/2026 12:54:53] "OPTIONS /api/account/usage HTTP/1.1" 200 -
+127.0.0.1 - - [11/Aug/2026 12:54:53] "OPTIONS /api/admin/companies HTTP/1.1" 200 -
+127.0.0.1 - - [11/Aug/2026 12:54:53] "GET /api/llm-providers HTTP/1.1" 401 -
+127.0.0.1 - - [11/Aug/2026 12:54:53] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [11/Aug/2026 12:54:53] "GET /api/account/usage HTTP/1.1" 401 -
+127.0.0.1 - - [11/Aug/2026 12:54:53] "GET /api/admin/companies HTTP/1.1" 401 -

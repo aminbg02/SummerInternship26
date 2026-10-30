@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>vLLM vs Ollama: A Theoretical Comparison</title>
+<style>
+  @page { size: A4; margin: 22mm 20mm; }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #222;
+    line-height: 1.5;
+    font-size: 11pt;
+  }
+  h1 { font-size: 20pt; margin-bottom: 4pt; }
+  h2 { font-size: 13pt; margin-top: 20pt; }
+  .subtitle { font-size: 11pt; color: #555; margin-top: 0; }
+  table { border-collapse: collapse; width: 100%; margin: 10pt 0; font-size: 10pt; }
+  th, td { border: 1px solid #ccc; padding: 6pt 8pt; text-align: left; vertical-align: top; }
+  th { background: #f0f0f0; }
+  ul, ol { margin-top: 4pt; }
+  li { margin-bottom: 4pt; }
+  a { color: #06c; }
+  .note { color: #555; font-size: 9.5pt; margin-top: 14pt; }
+</style>
+</head>
+<body>
+
+<h1>vLLM vs Ollama</h1>
+
+<h2>Where this fits in our project</h2>
+<p>
+Our backend is a multi-tenant RAG chatbot: every company gets its own knowledge base, and chat completions
+go through a pluggable LlmProvider abstraction that already supports an OpenAI-compatible base_url. A local
+Ollama instance (qwen2.5:3b-instruct) is registered as one of those providers for offline and demo use,
+alongside hosted providers like Groq and Cerebras. vLLM also exposes an OpenAI-compatible API, so at the
+integration level the two are interchangeable. Swapping one for the other later is a provider config change,
+not a rewrite. The real question is which one to actually run, and when.
+</p>
+
+<h2>The numbers</h2>
+<p>Two benchmarks put vLLM and Ollama on the same GPU serving the same model, so they're a fair comparison:</p>
+<table>
+<tr><th>Test</th><th>Result</th></tr>
+<tr>
+  <td>Red Hat, A100 GPU, Llama-3.1-8B (<a href="https://developers.redhat.com/articles/2025/08/08/ollama-vs-vllm-deep-dive-performance-benchmarking" target="_blank">source</a>)</td>
+  <td>vLLM hit 793 tokens/sec at peak vs 41 for Ollama. Response time under load: 80ms (vLLM) vs 673ms (Ollama).</td>
+</tr>
+<tr>
+  <td>R. McDermott, dual A6000 GPUs, Qwen3-14B (<a href="https://robert-mcdermott.medium.com/performance-vs-practicality-a-comparison-of-vllm-and-ollama-104acad250fd" target="_blank">source</a>)</td>
+  <td>vLLM up to 3.2x faster than Ollama at 128 concurrent requests. Ollama's throughput flattens around ~22 req/sec regardless of added load.</td>
+</tr>
+</table>
+<p>The one spot Ollama wins is a single request with nothing else running at the same time, about 18% faster in the McDermott test.</p>
+
+<h2>Why the gap</h2>
+<p>It comes down to how each one handles multiple requests at once:</p>
+<ul>
+<li><strong>vLLM</strong> is built around <a href="https://arxiv.org/abs/2309.06180" target="_blank">PagedAttention</a>, which manages GPU memory in small chunks instead of one big reserved block per request. That lets it pack far more requests into the same GPU memory and keep pulling new ones in as soon as room frees up. It's built to serve lots of users at once, which matches the shape of our project once more than one company is chatting at the same time.</li>
+<li><strong>Ollama</strong> (built on <a href="https://github.com/ggml-org/llama.cpp" target="_blank">llama.cpp</a>) caps how many requests it runs in parallel (4 by default) and doesn't do the same dynamic memory packing. Past that cap, everything else waits. It's built to run a model on one person's own machine, not as a multi-tenant server.</li>
+</ul>
+<p>So the gap isn't a fluke or a config problem on Ollama's side. It's what each tool was actually designed to do.</p>
+
+<h2>What each one requires</h2>
+<table>
+<tr><th></th><th>vLLM</th><th>Ollama</th></tr>
+<tr>
+  <td>OS</td>
+  <td>Officially <a href="https://docs.vllm.ai/en/latest/getting_started/installation/" target="_blank">Linux only</a>. No native Windows build, needs WSL2 or Docker on Windows.</td>
+  <td>Native installers for <a href="https://github.com/ollama/ollama" target="_blank">Windows, macOS, and Linux</a>, plus Docker.</td>
+</tr>
+<tr>
+  <td>GPU</td>
+  <td>Wants a real GPU with decent VRAM. Its speed advantage only shows up once it can batch a lot of requests in memory at once, so it's not really built for small consumer cards.</td>
+  <td>Runs fine on small GPUs, falls back to CPU/RAM if needed. Built around quantized models that fit in tight VRAM.</td>
+</tr>
+<tr>
+  <td>Best fit</td>
+  <td>A real server with a proper GPU, handling many tenants' requests at once.</td>
+  <td>One person's own machine, or a quick local demo.</td>
+</tr>
+</table>
+
+<h2>Where this leaves us</h2>
+<p>
+This lines up with what's already the working assumption: vLLM is the stronger engine, and the gap is real
+and structural, not a benchmarking artifact. It comes from a genuine architectural difference (PagedAttention
+plus continuous batching vs a fixed request cap), not from one project being less polished.
+</p>
+<p>
+Setup is part of that picture too. vLLM means a Python/pip install or Docker, more moving parts to get right
+and no native Windows build, while Ollama is one installer and one command to pull a model, running natively
+on Windows out of the box. Combined with where vLLM's advantage actually shows up (many concurrent requests
+on a proper GPU) and our current dev box being Windows with a 4GB GTX 1650 serving one person at a time,
+Ollama is the right fit for our local dev and demo setup right now. vLLM becomes the right call once this
+project is deployed for real, on a Linux GPU server handling multiple companies at once, and since both
+speak the same OpenAI-style API, moving over later is just swapping the provider config, not a rewrite.
+</p>
+
+<p class="note">Sources: Kwon et al., <a href="https://arxiv.org/abs/2309.06180" target="_blank">PagedAttention paper (SOSP '23)</a> &middot; <a href="https://developers.redhat.com/articles/2025/08/08/ollama-vs-vllm-deep-dive-performance-benchmarking" target="_blank">Red Hat Developer benchmark</a> &middot; <a href="https://robert-mcdermott.medium.com/performance-vs-practicality-a-comparison-of-vllm-and-ollama-104acad250fd" target="_blank">McDermott benchmark</a> &middot; <a href="https://docs.vllm.ai/" target="_blank">vLLM docs</a> &middot; <a href="https://github.com/ollama/ollama" target="_blank">Ollama repo</a> &middot; <a href="https://github.com/ggml-org/llama.cpp" target="_blank">llama.cpp repo</a></p>
+
+</body>
+</html>

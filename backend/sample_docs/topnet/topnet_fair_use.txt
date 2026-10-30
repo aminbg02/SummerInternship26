@@ -1,0 +1,4 @@
+Topnet Fair Use Policy.
+Unlimited home plans are subject to fair use. Above 2 TB of traffic in a calendar month, speeds may be shaped during peak hours, 7pm to 11pm, to protect other users. Shaping is never applied outside peak hours.
+Topnet notifies a customer by email once they pass 1.5 TB in a month, as a warning. Fewer than 1 percent of customers ever reach the threshold.
+Running a public server on a residential line is not permitted; a business plan with a static IP is required for that. Repeated breaches after two written warnings may lead to termination with 30 days notice.

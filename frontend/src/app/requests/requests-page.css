@@ -1,0 +1,99 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.65rem 1.25rem;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: saturate(1.4) blur(10px);
+  border-bottom: 1px solid var(--line);
+  box-shadow: var(--sh-1);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.98rem;
+  color: var(--ink);
+}
+
+.brand-mark {
+  width: 28px;
+  height: 28px;
+  flex: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #ff9a3d, var(--brand));
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.9rem;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 3px 8px rgba(255, 121, 0, 0.4);
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-left: auto;
+}
+
+.user {
+  font-size: 0.8rem;
+  color: var(--ink-2);
+  font-weight: 500;
+  padding: 0.25rem 0.65rem;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+}
+
+.link {
+  background: none;
+  border: none;
+  color: var(--ink-2);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.3rem 0.45rem;
+  border-radius: var(--r-sm);
+  transition: color 0.15s var(--ease), background 0.15s var(--ease);
+}
+.link:hover {
+  color: var(--brand-700);
+}
+
+.icon-link {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+}
+.icon-link svg {
+  width: 16px;
+  height: 16px;
+}
+.icon-link:hover {
+  background: var(--brand-50);
+}
+
+.content {
+  padding: 2rem 2.25rem;
+  max-width: 1180px;
+  margin: 0 auto;
+}

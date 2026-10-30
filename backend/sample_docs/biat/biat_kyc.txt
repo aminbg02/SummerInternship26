@@ -1,0 +1,4 @@
+BIAT Know Your Customer Requirements.
+To open a personal account BIAT requires a valid national ID card or passport, proof of address dated within the last 3 months, and proof of income or employment.
+Documents must be re-verified every 5 years, or immediately if the customer's address, name or employment changes. Failure to update within 60 days of a written request leads to restrictions: outgoing transfers are blocked, though the account is not closed and card payments continue.
+A non-resident account requires additional proof of the source of funds for any deposit above 20,000 dinars.

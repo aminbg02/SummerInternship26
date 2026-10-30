@@ -1,0 +1,4 @@
+GlobalNet Billing and Payments.
+Invoices are issued on the 1st of each month and cover the month ahead. Payment is due within 14 days, by credit card, bank transfer, or autopay enrolled in the customer portal.
+A late payment incurs a 5 dollar fee after 10 days overdue. Service is suspended after 21 days overdue and fully disconnected after 45 days, at which point a new installation is required to reconnect.
+A new subscription can be cancelled for a full refund within 14 days of activation, provided the router is returned undamaged.

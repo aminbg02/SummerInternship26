@@ -1,0 +1,3 @@
+Telecom Plans and Pricing.
+Mobile plans: Start (5 GB, 10 euros/month), Plus (30 GB, 20 euros/month), Unlimited (unlimited data, 35 euros/month). All mobile plans include unlimited calls and SMS within the country.
+Home internet: Fiber Lite (100 Mbps, 49 euros/month), Fiber Pro (500 Mbps, 79 euros/month), Fiber Max (1 Gbps, 99 euros/month). Fiber Pro and Fiber Max include a free Wi-Fi 6 router. Installation is free on a 12-month contract, otherwise a one-time 49 euro fee applies.

@@ -1,0 +1,4 @@
+Ooredoo Coverage and Network.
+Ooredoo operates 4G across 96 percent of the population and 5G in Tunis, Ariana, Sousse and Monastir. Indoor coverage in dense urban areas is supported by small cells.
+A customer reporting weak indoor signal may request a free signal booster, subject to a technical survey. The survey takes up to 10 working days. If the survey finds no fault on the network side, the booster is offered at 39 dinars instead of free.
+Network status is available in the My Ooredoo app under Network, refreshed every hour.

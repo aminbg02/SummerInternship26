@@ -1,0 +1,165 @@
+<div class="pii-rules">
+  <div class="page-head">
+    <div>
+      <h2>{{ lang.t('piiRules.title') }}</h2>
+      <p class="lede">{{ lang.t('piiRules.lede') }}</p>
+    </div>
+    <button class="primary" (click)="startCreate()">{{ lang.t('piiRules.add') }}</button>
+  </div>
+
+  @if (error()) {
+    <div class="error">{{ error() }}</div>
+  }
+
+  <div class="card note">
+    {{ lang.t('piiRules.builtinNote') }}
+  </div>
+
+  @if (showForm()) {
+    <form class="card form" (ngSubmit)="save()">
+      <h3>{{ form.id == null ? lang.t('piiRules.addTitle') : lang.t('piiRules.editTitle') }}</h3>
+      <div class="grid">
+        <label>{{ lang.t('piiRules.entityName') }} <span class="muted">{{ lang.t('piiRules.entityNameHint') }}</span>
+          <input name="entity_name" [(ngModel)]="form.entity_name" required
+                 placeholder="e.g. REFERENCE_NUMBER" />
+        </label>
+        <label>{{ lang.t('piiRules.score') }} <span class="muted">{{ lang.t('piiRules.scoreHint') }}</span>
+          <input name="score" type="number" step="0.05" min="0" max="1" [(ngModel)]="form.score" />
+        </label>
+      </div>
+
+      <div class="mode-toggle">
+        <button type="button" class="tab" [class.active]="builderMode === 'simple'"
+                (click)="setBuilderMode('simple')">{{ lang.t('piiRules.modeSimple') }}</button>
+        <button type="button" class="tab" [class.active]="builderMode === 'advanced'"
+                (click)="setBuilderMode('advanced')">{{ lang.t('piiRules.modeAdvanced') }}</button>
+      </div>
+
+      @if (builderMode === 'simple') {
+        <div class="builder">
+          <label class="narrow">{{ lang.t('piiRules.builderPrefix') }}
+            <input name="builder_prefix" [(ngModel)]="builderPrefix" (ngModelChange)="updateGeneratedPattern()"
+                   placeholder="e.g. REF-" />
+          </label>
+          <label class="narrow">{{ lang.t('piiRules.builderCharType') }}
+            <select name="builder_char_type" [(ngModel)]="builderCharType" (ngModelChange)="updateGeneratedPattern()">
+              <option value="digits">{{ lang.t('piiRules.charDigits') }}</option>
+              <option value="letters">{{ lang.t('piiRules.charLetters') }}</option>
+              <option value="alnum">{{ lang.t('piiRules.charAlnum') }}</option>
+            </select>
+          </label>
+          <label class="narrow">{{ lang.t('piiRules.builderCount') }}
+            <input name="builder_count" type="number" min="1" max="40"
+                   [(ngModel)]="builderCount" (ngModelChange)="updateGeneratedPattern()" />
+          </label>
+          <label class="narrow">{{ lang.t('piiRules.builderSuffix') }}
+            <input name="builder_suffix" [(ngModel)]="builderSuffix" (ngModelChange)="updateGeneratedPattern()"
+                   placeholder="(usually blank)" />
+          </label>
+        </div>
+        <p class="generated-pattern">{{ lang.t('piiRules.generatedPattern') }} <code>{{ form.pattern }}</code></p>
+      } @else {
+        <label>{{ lang.t('piiRules.pattern') }} <span class="muted">{{ lang.t('piiRules.patternHint') }}</span>
+          <input name="pattern" [(ngModel)]="form.pattern" required
+                 placeholder="e.g. \bREF-\d{6}\b" />
+        </label>
+      }
+
+      <div class="test-box">
+        <label>{{ lang.t('piiRules.testLabel') }} <span class="muted">{{ lang.t('piiRules.testHint') }}</span>
+          <input name="test_text" [(ngModel)]="testText" [ngModelOptions]="{standalone: true}"
+                 placeholder="e.g. Your reference is REF-482913." />
+        </label>
+        @if (testPreview !== null) {
+          <p class="test-preview">
+            @for (seg of testPreview; track $index) {
+              @if (seg.match) {
+                <mark>{{ seg.text }}</mark>
+              } @else {
+                <span>{{ seg.text }}</span>
+              }
+            }
+          </p>
+        }
+      </div>
+
+      @if (form.id == null) {
+        <div class="company-picker">
+          <span class="picker-label">{{ lang.t('piiRules.company') }} <span class="muted">{{ lang.t('piiRules.companyPickerHint') }}</span></span>
+          <div class="checks">
+            @for (c of companies(); track c.id) {
+              <label class="check">
+                <input type="checkbox"
+                       [checked]="form.companyIds.includes(c.id)"
+                       (change)="toggleCompanyChecked(c.id, $any($event.target).checked)" />
+                {{ c.name }}
+              </label>
+            }
+          </div>
+          @if (form.companyIds.length === 0) {
+            <p class="muted hint-line">{{ lang.t('piiRules.noneCheckedHint') }}</p>
+          }
+        </div>
+      } @else {
+        <label>{{ lang.t('piiRules.company') }} <span class="muted">{{ lang.t('piiRules.companyHint') }}</span>
+          <select name="company_id" [(ngModel)]="editCompanyId">
+            <option [ngValue]="null">{{ lang.t('piiRules.global') }}</option>
+            @for (c of companies(); track c.id) {
+              <option [ngValue]="c.id">{{ c.name }}</option>
+            }
+          </select>
+        </label>
+      }
+
+      <div class="toggles">
+        <label class="check"><input type="checkbox" name="enabled" [(ngModel)]="form.enabled" /> {{ lang.t('piiRules.enabled') }}</label>
+      </div>
+      <div class="actions">
+        <button type="submit" class="primary">{{ form.id == null ? lang.t('piiRules.create') : lang.t('piiRules.save') }}</button>
+        <button type="button" class="ghost" (click)="cancel()">{{ lang.t('piiRules.cancel') }}</button>
+      </div>
+    </form>
+  }
+
+  <div class="card table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>{{ lang.t('piiRules.colEntity') }}</th>
+          <th>{{ lang.t('piiRules.colPattern') }}</th>
+          <th>{{ lang.t('piiRules.colScore') }}</th>
+          <th>{{ lang.t('piiRules.colCompany') }}</th>
+          <th>{{ lang.t('piiRules.colEnabled') }}</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (r of rules(); track r.id) {
+          <tr>
+            <td><code>{{ r.entity_name }}</code></td>
+            <td class="muted"><code>{{ r.pattern }}</code></td>
+            <td>{{ r.score }}</td>
+            <td>
+              @if (r.company_id == null) {
+                <span class="pill">{{ lang.t('piiRules.global') }}</span>
+              } @else {
+                {{ companyName(r.company_id) }}
+              }
+            </td>
+            <td>
+              <button class="pill" [class.on]="r.enabled" (click)="toggleEnabled(r)">
+                {{ r.enabled ? lang.t('piiRules.on') : lang.t('piiRules.off') }}
+              </button>
+            </td>
+            <td class="row-actions">
+              <button class="ghost sm" (click)="startEdit(r)">{{ lang.t('piiRules.edit') }}</button>
+              <button class="ghost sm danger" (click)="remove(r)">{{ lang.t('piiRules.deleteAction') }}</button>
+            </td>
+          </tr>
+        } @empty {
+          <tr><td colspan="6" class="muted center">{{ lang.t('piiRules.empty') }}</td></tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

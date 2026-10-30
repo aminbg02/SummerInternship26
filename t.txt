@@ -1,0 +1,6 @@
+
+ wsl --install
+ winget install -e --id Docker.DockerDesktop
+
+winget install -e --id Python.Python.3.13
+  winget install -e --id OpenJS.NodeJS.LTS

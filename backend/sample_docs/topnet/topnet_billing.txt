@@ -1,0 +1,5 @@
+Topnet Billing and Subscription Changes.
+Invoices are issued on the 1st of each month and are due within 15 days. Pay in the Topnet app, online by card, by bank standing order, at a Topnet agency, or at a post office.
+Service is throttled to 1 Mbps after 20 days overdue and suspended after 30 days. Reconnection costs 10 dinars and the line is restored within 4 hours of payment. A line suspended for more than 90 days is terminated and a new installation is required.
+Upgrading a plan takes effect immediately and the difference is prorated on the next invoice. Downgrading takes effect at the start of the next billing cycle. Moving home is free within a covered area and takes 5 business days.
+A subscription can be paused once per year for up to 3 months, for example during a long absence, at 10 dinars/month to keep the line reserved.

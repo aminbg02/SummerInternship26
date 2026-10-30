@@ -1,0 +1,51 @@
+
+> frontend@0.0.0 start
+> ng serve
+
+[33m>[39m Building...
+[32m√[39m Building...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m        [2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m         [2m | [22m  [36m6.74 kB[39m[2m | [22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m       [2m | [22m  [36m6.45 kB[39m[2m | [22m
+[32mchunk-NXXMHRF7.js[39m  [2m | [22m[2m-[22m            [2m | [22m  [36m1.68 kB[39m[2m | [22m
+[32mchunk-6GSRTF37.js[39m  [2m | [22m[2m-[22m            [2m | [22m  [36m1.02 kB[39m[2m | [22m
+[32mchunk-7WHMXQ4M.js[39m  [2m | [22m[2m-[22m            [2m | [22m[36m279 bytes[39m[2m | [22m
+
+[1m [22m                  [2m | [22m[1mInitial total[22m[2m | [22m [1m16.16 kB[22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m        [2m | [22m [1mRaw size[22m
+[32mchunk-J76EXKCY.js[39m  [2m | [22m[2mchat[22m         [2m | [22m[36m129.49 kB[39m[2m | [22m
+[32mchunk-4W2HCSP3.js[39m  [2m | [22m[2m-[22m            [2m | [22m [36m68.85 kB[39m[2m | [22m
+[32mchunk-RNUQG2X4.js[39m  [2m | [22m[2mpii-rules[22m    [2m | [22m [36m55.86 kB[39m[2m | [22m
+[32mchunk-PZTLSUOM.js[39m  [2m | [22m[2m-[22m            [2m | [22m [36m44.99 kB[39m[2m | [22m
+[32mchunk-73S7EHZH.js[39m  [2m | [22m[2musers[22m        [2m | [22m [36m43.79 kB[39m[2m | [22m
+[32mchunk-73W5S5WW.js[39m  [2m | [22m[2mfeedback[22m     [2m | [22m [36m42.73 kB[39m[2m | [22m
+[32mchunk-YWL4NVDJ.js[39m  [2m | [22m[2musage[22m        [2m | [22m [36m42.61 kB[39m[2m | [22m
+[32mchunk-3L4XWIWT.js[39m  [2m | [22m[2mproviders[22m    [2m | [22m [36m42.54 kB[39m[2m | [22m
+[32mchunk-IDVSACE2.js[39m  [2m | [22m[2mkb[22m           [2m | [22m [36m41.86 kB[39m[2m | [22m
+[32mchunk-YSG5ITIO.js[39m  [2m | [22m[2mcompanies[22m    [2m | [22m [36m38.66 kB[39m[2m | [22m
+[32mchunk-EQUQHDTY.js[39m  [2m | [22m[2madmin[22m        [2m | [22m [36m23.40 kB[39m[2m | [22m
+[32mchunk-TCH2LULD.js[39m  [2m | [22m[2mlogin[22m        [2m | [22m [36m19.65 kB[39m[2m | [22m
+[32mchunk-P6IEZFT4.js[39m  [2m | [22m[2mcompany[22m      [2m | [22m [36m18.00 kB[39m[2m | [22m
+[32mchunk-J2TBXN3N.js[39m  [2m | [22m[2mrequests-page[22m[2m | [22m  [36m9.60 kB[39m[2m | [22m
+[32mchunk-BUYLVZHY.js[39m  [2m | [22m[2mkb[22m           [2m | [22m  [36m9.56 kB[39m[2m | [22m
+[2m...and 3 more lazy chunks files. Use "--verbose" to show all the files.[22m
+
+Application bundle generation complete. [5.817 seconds] - 2026-08-11T11:54:32.915Z
+
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/extended-diagnostics/NG8107[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/admin/feedback/feedback.html:107:33:
+[37m      107 │               @if (item.sources?.[32mlength[37m) {
+          ╵                                  [32m~~~~~~[0m
+
+  Warning occurs in the template of component FeedbackAdmin.
+
+    src/app/admin/feedback/feedback.ts:12:15:
+[37m      12 │   templateUrl: [32m'./feedback.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+Watch mode enabled. Watching for file changes...
+NOTE: Raw file sizes do not reflect development server per-request transformations.
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m4200[22m/[39m

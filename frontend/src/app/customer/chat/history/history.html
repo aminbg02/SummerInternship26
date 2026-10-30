@@ -1,0 +1,31 @@
+<aside class="history">
+  <button class="new-chat" type="button" (click)="newChat.emit()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+    <span>{{ lang.t('history.newChat') }}</span>
+  </button>
+
+  <div class="history-list">
+    @for (c of conversations(); track c.id) {
+      <div class="history-item" [class.active]="c.id === activeId()"
+           [class.editing]="editingId() === c.id"
+           (click)="open.emit(c.id)">
+        @if (editingId() === c.id) {
+          <input #renameBox class="history-edit" [(ngModel)]="editDraft"
+                 (click)="$event.stopPropagation()"
+                 (keydown.enter)="commitRename(c)"
+                 (keydown.escape)="cancelRename()"
+                 (blur)="commitRename(c)" />
+        } @else {
+          <span class="history-title" [title]="lang.t('history.renameHint')"
+                (dblclick)="startRename(c, $event)">{{ c.title }}</span>
+          <button class="history-del" type="button" [title]="lang.t('history.deleteConversation')"
+                  [attr.aria-label]="lang.t('history.deleteConversation')" (click)="onDelete(c.id, $event)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>
+          </button>
+        }
+      </div>
+    } @empty {
+      <p class="history-empty">{{ lang.t('history.empty') }}</p>
+    }
+  </div>
+</aside>

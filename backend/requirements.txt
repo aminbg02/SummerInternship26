@@ -1,0 +1,27 @@
+Flask==3.1.0
+Flask-SQLAlchemy==3.1.1
+Flask-Cors==5.0.0
+Flask-JWT-Extended==4.7.1
+SQLAlchemy==2.0.36
+python-dotenv==1.0.1
+cryptography==44.0.0
+litellm==1.57.0
+qdrant-client==1.12.1
+# Postgres driver — only needed when DATABASE_URL points at Postgres (see
+# docker-compose.yml). Harmless if you stay on SQLite. Binary wheel, no compiler.
+psycopg[binary]==3.2.3
+# Document text extraction for uploads/ingest (PDF + Word). Both pure-Python
+# wheels (python-docx pulls lxml); see services/extract.py.
+pypdf==5.1.0
+python-docx==1.1.2
+# Seeding only: app/seed_docs.py AUTHORS the sample corpus as real .pdf files, so
+# ingest is exercised against genuine PDFs rather than text with a .pdf extension.
+# python-docx already writes .docx; nothing here could write a PDF. Pure-Python.
+fpdf2==2.8.7
+# fastembed needs prebuilt wheels only on Windows/py3.13 (mmh3 has no source-build compiler).
+# Install with: pip install -r requirements.txt --only-binary mmh3,fastembed
+mmh3==5.2.1
+fastembed==0.8.0
+# Tracing/tracking + prompt registry + eval — talks to the mlflow service in
+# docker-compose.yml (http://localhost:5001). See services/tracing.py.
+mlflow==3.15.0

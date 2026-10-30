@@ -1,0 +1,70 @@
+<div class="chat-shell">
+  <app-chat-history
+    [conversations]="conversations()"
+    [activeId]="conversationId()"
+    (newChat)="newChat()"
+    (open)="openConversation($event)"
+    (rename)="renameConversation($event)"
+    (remove)="deleteConversation($event)" />
+
+<div class="chat">
+  <app-chat-toolbar
+    [userEmail]="userEmail()"
+    [consoleHome]="consoleHome()"
+    [isSuperAdmin]="isSuperAdmin()"
+    [companies]="companies()"
+    [companyId]="companyId()"
+    (companyChange)="onCompanyChange($event)"
+    [providerViews]="providerViews()"
+    [(providerId)]="providerId"
+    (providerChange)="onProviderChange()"
+    [(temperature)]="temperature"
+    [(maxTokens)]="maxTokens"
+    [maxTokensCeiling]="maxTokensCeiling()"
+    (logout)="logout()" />
+
+  @if (usage(); as u) {
+    @if (u.limit != null) {
+      <div class="quota" [class.warn]="u.percent >= 80" [class.full]="u.percent >= 100">
+        <div class="quota-head">
+          <span>{{ quotaLabel() }}</span>
+          <span>{{ u.used | number }} / {{ u.limit | number }} ({{ u.percent }}%)</span>
+        </div>
+        <div class="quota-bar"><div class="quota-fill" [style.width.%]="u.percent"></div></div>
+        @if (u.blocked_by) {
+          <p class="quota-note">
+            {{ u.scope === 'company' ? lang.t('chat.quotaCompanyNote') : lang.t('chat.quotaUserNote') }}
+          </p>
+        }
+      </div>
+    }
+  }
+
+  @if (banner()) {
+    <div class="banner">{{ banner() }}</div>
+  }
+
+  <app-chat-transcript
+    [messages]="messages()"
+    [loading]="loading()"
+    [userEmail]="userEmail()"
+    (feedback)="rateMessage($event)" />
+
+  @if (toast(); as t) {
+    <div class="toast" role="status" (click)="dismissToast()" title="Dismiss">
+      <svg class="toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+      <span>{{ t }}</span>
+    </div>
+  }
+
+  @if (uploadInfo()) {
+    <div class="upload-info">{{ uploadInfo() }}</div>
+  }
+
+  <app-chat-composer
+    [(draft)]="draft"
+    [canSend]="canSend()"
+    (send)="send()"
+    (fileSelected)="uploadFile($event)" />
+</div>
+</div>

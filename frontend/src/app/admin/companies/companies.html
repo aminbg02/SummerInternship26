@@ -1,0 +1,129 @@
+<section class="companies">
+  <div class="page-head">
+    <div>
+      <h2>{{ lang.t('companies.title') }}</h2>
+      <p class="lede">{{ lang.t('companies.lede') }}</p>
+    </div>
+  </div>
+
+  <form class="create" (ngSubmit)="create()">
+    <div class="row">
+      <input name="name" [placeholder]="lang.t('companies.namePlaceholder')" [(ngModel)]="name" />
+      <input name="domain" [placeholder]="lang.t('companies.domainPlaceholder')" [(ngModel)]="domain" />
+      <input
+        name="cap"
+        type="number"
+        min="0"
+        [placeholder]="lang.t('companies.capPlaceholder')"
+        [(ngModel)]="dailyTokenLimit"
+      />
+      <button type="submit" [disabled]="busy()">{{ lang.t('companies.add') }}</button>
+    </div>
+
+    <fieldset class="isolation">
+      <legend>{{ lang.t('companies.kbLegend') }}</legend>
+      <label class="opt">
+        <input type="radio" name="isolation" value="shared" [(ngModel)]="isolation" />
+        <span>
+          <strong>{{ lang.t('companies.sharedTitle') }}</strong>
+          <em>{{ lang.t('companies.sharedDesc') }}</em>
+        </span>
+      </label>
+      <label class="opt" [class.disabled]="dedicatedUnavailable()">
+        <input
+          type="radio"
+          name="isolation"
+          value="dedicated"
+          [disabled]="dedicatedUnavailable()"
+          [(ngModel)]="isolation"
+        />
+        <span>
+          <strong>{{ lang.t('companies.dedicatedTitle') }}</strong>
+          <em>{{ lang.t('companies.dedicatedDesc') }}</em>
+        </span>
+      </label>
+      @if (dedicatedHint(); as hint) {
+        <p class="pool-hint" [class.exhausted]="dedicatedUnavailable()">{{ hint }}</p>
+      }
+    </fieldset>
+  </form>
+
+  @if (notice()) {
+    <p class="notice">{{ notice() }}</p>
+  }
+  @if (error()) {
+    <p class="error">{{ error() }}</p>
+  }
+
+  <table class="grid">
+    <thead>
+      <tr>
+        <th>{{ lang.t('companies.colId') }}</th>
+        <th>{{ lang.t('companies.colName') }}</th>
+        <th>{{ lang.t('companies.colDomain') }}</th>
+        <th>{{ lang.t('companies.colKb') }}</th>
+        <th>{{ lang.t('companies.colCap') }}</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (c of rows(); track c.id) {
+        <tr>
+          <td>{{ c.id }}</td>
+          <td>{{ c.name }}</td>
+          <td>
+            <input
+              class="domain-input"
+              type="text"
+              [placeholder]="lang.t('companies.domainPlaceholderRow')"
+              [(ngModel)]="domains[c.id]"
+              [disabled]="savingId() === c.id"
+            />
+          </td>
+          <td class="kb">
+            @if (c.isolation === 'dedicated') {
+              <span class="badge dedicated" [title]="c.qdrant_url ?? ''">{{ lang.t('companies.dedicated') }}</span>
+            } @else {
+              <span class="badge shared">{{ lang.t('companies.shared') }}</span>
+            }
+          </td>
+          <td>
+            <input
+              class="cap-input"
+              type="number"
+              min="0"
+              [placeholder]="lang.t('companies.capPlaceholderRow')"
+              [(ngModel)]="caps[c.id]"
+              [disabled]="savingId() === c.id"
+            />
+          </td>
+          <td>
+            <button
+              type="button"
+              class="save"
+              [disabled]="!rowChanged(c) || savingId() === c.id"
+              (click)="saveRow(c)"
+            >
+              {{ savingId() === c.id ? lang.t('companies.saving') : lang.t('companies.save') }}
+            </button>
+          </td>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="6" class="empty">{{ lang.t('companies.empty') }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+  <p class="hint">
+    <strong>{{ lang.t('companies.hintCapLabel') }}</strong> {{ lang.t('companies.hintCapBody') }}
+  </p>
+  <p class="hint">
+    <strong>{{ lang.t('companies.hintKbLabel') }}</strong> {{ lang.t('companies.hintKbBody') }}
+  </p>
+  <p class="hint">
+    <strong>{{ lang.t('companies.hintDomainLabel') }}</strong> —
+    <code>alice&#64;acme.com</code> → <code>alice&#64;acme.tn</code>: {{ lang.t('companies.hintDomainBody') }}
+  </p>
+</section>

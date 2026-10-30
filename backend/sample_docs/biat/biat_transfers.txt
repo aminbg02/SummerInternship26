@@ -1,0 +1,5 @@
+BIAT Transfers and Foreign Exchange.
+Domestic transfers between BIAT accounts are instant and free in the BIAT Net app. A transfer to another Tunisian bank costs 1 dinar and arrives the same business day if ordered before 3pm, otherwise the next business day.
+International transfers cost 20 dinars plus 0.3 percent of the amount, with a minimum of 25 dinars, and take 2 to 5 business days. The IBAN and the SWIFT or BIC code of the beneficiary bank are required; a missing BIC is the most common cause of a delayed transfer.
+Foreign exchange is applied at the daily rate published each morning. A Compte Devise may be credited by international transfer without conversion. Currency allowances for travel are set by the central bank and require the travel document to be presented at a branch.
+Standing orders for a fixed amount can be set up in the app at no charge and are executed on the chosen day of each month.

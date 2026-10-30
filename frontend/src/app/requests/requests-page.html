@@ -1,0 +1,17 @@
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">O</span>
+    <span>{{ lang.t('toolbar.brand') }}</span>
+  </div>
+  <div class="right">
+    <app-language-switcher />
+    <span class="user">{{ userEmail() }}</span>
+    <a class="link" routerLink="/chat">{{ lang.t('toolbar.backToChat') }}</a>
+    <button class="link icon-link" (click)="logout()" [title]="lang.t('toolbar.signOut')" [attr.aria-label]="lang.t('toolbar.signOut')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>
+    </button>
+  </div>
+</header>
+<main class="content">
+  <app-token-requests />
+</main>

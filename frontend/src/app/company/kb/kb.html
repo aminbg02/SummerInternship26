@@ -1,0 +1,20 @@
+<section class="kb">
+  <div class="page-head">
+    <div>
+      <h2>{{ lang.t('companyKb.title') }}</h2>
+      <p class="lede">{{ lang.t('companyKb.lede') }}</p>
+    </div>
+  </div>
+
+  <label class="uploader" [class.busy]="busy()">
+    <input type="file" accept=".txt,.md,.pdf,.docx" (change)="onFileSelected($event)" [disabled]="busy()" />
+    <span>{{ busy() ? lang.t('companyKb.working') : lang.t('companyKb.choose') }}</span>
+  </label>
+
+  @if (result()) {
+    <p class="result">{{ result() }}</p>
+  }
+  @if (error()) {
+    <p class="error">{{ error() }}</p>
+  }
+</section>

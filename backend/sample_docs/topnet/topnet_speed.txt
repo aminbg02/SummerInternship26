@@ -1,0 +1,4 @@
+Topnet Speed and Line Quality.
+Advertised speeds are the maximum achievable on the line. Topnet guarantees a minimum of 80 percent of the advertised download speed on fibre, measured over a wired connection.
+If a wired speed test taken 3 times on separate days shows less than 80 percent, the customer may report a fault. If Topnet cannot restore the speed within 30 days, the customer may downgrade to the matching lower plan and be refunded the difference for the affected period, or leave without penalty.
+Wi-Fi speeds are not guaranteed, as they depend on the device, distance and interference.

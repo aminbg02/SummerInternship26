@@ -1,0 +1,5 @@
+Ooredoo Billing and Payments.
+Postpaid invoices are issued on the 5th of each month and are due within 10 days. Pay in the My Ooredoo app, at any Ooredoo shop, by bank card online, or at a post office.
+A postpaid line is suspended for outgoing calls and data after 15 days overdue, and fully suspended after 30 days. Reconnection after a full suspension costs 5 dinars and is applied within 2 hours of payment.
+Prepaid credit does not expire while the line is active, but a prepaid line with no recharge and no activity for 6 consecutive months is deactivated and the number is returned to the pool.
+Detailed call and data records for the last 6 months are available free of charge in the app. A printed invoice requested at a shop costs 1 dinar.

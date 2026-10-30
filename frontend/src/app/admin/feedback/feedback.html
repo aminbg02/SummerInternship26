@@ -1,0 +1,125 @@
+<div class="feedback">
+  <div class="header">
+    <div>
+      <h2>{{ lang.t('feedback.title') }}</h2>
+      <p class="lede">{{ lang.t('feedback.lede') }}</p>
+    </div>
+    <form class="filter" (ngSubmit)="load()">
+      <label>{{ lang.t('feedback.sinceDays') }}
+        <input name="since" type="number" min="1" step="1" [(ngModel)]="sinceDays" [placeholder]="lang.t('usage.sinceDaysPlaceholder')" />
+      </label>
+      <button type="submit" class="primary">{{ lang.t('feedback.refresh') }}</button>
+    </form>
+  </div>
+
+  @if (error()) {
+    <div class="error">{{ error() }}</div>
+  }
+
+  @if (summary(); as s) {
+    <div class="totals">
+      <div class="stat accent">
+        <span class="stat-icon" [class]="'score-' + scoreClass(overallScore())">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </span>
+        <span class="num">{{ scoreLabel(overallScore()) }}</span>
+        <span class="lbl">{{ lang.t('feedback.satisfaction') }}</span>
+      </div>
+      <div class="stat">
+        <span class="stat-icon up">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </span>
+        <span class="num">{{ s.total.up | number }}</span>
+        <span class="lbl">{{ lang.t('feedback.thumbsUp') }}</span>
+      </div>
+      <div class="stat">
+        <span class="stat-icon down">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </span>
+        <span class="num">{{ s.total.down | number }}</span>
+        <span class="lbl">{{ lang.t('feedback.thumbsDown') }}</span>
+      </div>
+      <div class="stat" [title]="lang.t('feedback.ratedTitle')">
+        <span class="stat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </span>
+        <span class="num">{{ s.total.rated | number }}<span class="of">/ {{ s.total.answers | number }}</span></span>
+        <span class="lbl">{{ lang.t('feedback.ratedAnswers', { pct: coverage() }) }}</span>
+      </div>
+    </div>
+
+    <div class="tables">
+      <div class="card">
+        <h3>{{ lang.t('feedback.byProvider') }}</h3>
+        <p class="hint">{{ lang.t('feedback.byProviderHint') }}</p>
+        @if (s.by_provider.length) {
+          <div class="bars">
+            @for (r of s.by_provider; track r.id) {
+              <div class="fb-row">
+                <span class="fb-label" [title]="r.name">{{ r.name }}</span>
+                <div class="split-track" [title]="r.up + ' up / ' + r.down + ' down'">
+                  <div class="split-up" [style.width.%]="upPercent(r)"></div>
+                </div>
+                <span class="fb-score" [class]="scoreClass(r.score)">{{ scoreLabel(r.score) }}</span>
+                <span class="fb-counts"><span class="u">▲{{ r.up }}</span> <span class="d">▼{{ r.down }}</span></span>
+              </div>
+            }
+          </div>
+        } @else {
+          <p class="muted center">{{ lang.t('feedback.noFeedback') }}</p>
+        }
+      </div>
+
+      <div class="card">
+        <h3>{{ lang.t('feedback.byCompany') }}</h3>
+        <p class="hint">{{ lang.t('feedback.byCompanyHint') }}</p>
+        @if (s.by_company.length) {
+          <div class="bars">
+            @for (r of s.by_company; track r.id) {
+              <div class="fb-row">
+                <span class="fb-label" [title]="r.name">{{ r.name }}</span>
+                <div class="split-track" [title]="r.up + ' up / ' + r.down + ' down'">
+                  <div class="split-up" [style.width.%]="upPercent(r)"></div>
+                </div>
+                <span class="fb-score" [class]="scoreClass(r.score)">{{ scoreLabel(r.score) }}</span>
+                <span class="fb-counts"><span class="u">▲{{ r.up }}</span> <span class="d">▼{{ r.down }}</span></span>
+              </div>
+            }
+          </div>
+        } @else {
+          <p class="muted center">{{ lang.t('feedback.noFeedback') }}</p>
+        }
+      </div>
+    </div>
+
+    <div class="card review">
+      <h3>{{ lang.t('feedback.reviewQueue') }}</h3>
+      @if (s.review.length) {
+        <ul class="review-list">
+          @for (item of s.review; track item.message_id) {
+            <li class="review-item">
+              <div class="review-meta">
+                <span class="tag provider">{{ item.provider_name }}</span>
+                <span class="tag company">{{ item.company_name }}</span>
+                <span class="ts">{{ when(item.created_at) }}</span>
+              </div>
+              <p class="review-content">{{ item.content }}</p>
+              @if (item.sources?.length) {
+                <div class="sources">
+                  <span class="sources-label">{{ lang.t('feedback.groundedOn') }}</span>
+                  @for (src of item.sources; track src.filename) {
+                    <span class="src-chip" [title]="'score ' + (src.score | number:'1.2-2')">{{ src.filename }}</span>
+                  }
+                </div>
+              } @else {
+                <div class="sources"><span class="sources-label ungrounded">{{ lang.t('feedback.ungrounded') }}</span></div>
+              }
+            </li>
+          }
+        </ul>
+      } @else {
+        <p class="muted center">{{ lang.t('feedback.noneInWindow') }}</p>
+      }
+    </div>
+  }
+</div>
